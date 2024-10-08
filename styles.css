@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
     color: #333;
@@ -17,53 +17,69 @@ body {
     min-height: 100vh;
 }
 
-/* Header and Footer will occupy a fixed space */
-header, footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
-/* Make header and footer's height flexible based on content */
+/* Header styles */
 header {
     flex: 0 0 auto; /* Header takes only as much space as needed */
+    position: relative; /* Positioning context for absolute children */
+    background: none; /* Set header background to none */
 }
 
-footer {
-    flex: 0 0 auto; /* Footer takes only as much space as needed */
+/* Navigation styles with animation */
+nav {
+    position: fixed;
+    top: -5%; /* Start off the screen at -5% */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%; /* Width remains 60% */
+    z-index: 1000;
+    background-color: white;
+    border: 2px solid red;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex; /* Flexbox to allow logo and menu */
+    justify-content: space-between;
+    align-items: center;
+    
+    /* Animation on page load */
+    animation: slideDown 1s ease-out forwards;
 }
 
-/* Main container takes up the remaining height */
-main {
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
+/* Keyframes for the slide-down animation */
+@keyframes slideDown {
+    0% {
+        top: -5%;
+    }
+    100% {
+        top: 5%;
+    }
 }
 
-/* Section heights will fill the remaining space */
-section {
-    flex: 1;
-    padding: 20px;
-    background-color: #fff;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Logo (Bongani KaNjabulo) */
+#logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    margin-left: 10px; /* Add some space on the left */
 }
 
-/* Header navigation */
+#logo:hover {
+    text-decoration: underline;
+}
+
+/* Navigation menu */
 nav ul {
     list-style: none;
     padding: 0;
+    display: flex; /* Make the navigation items flexbox */
+    justify-content: center; /* Center the nav items */
 }
 
 nav ul li {
-    display: inline;
     margin-right: 10px;
 }
 
 nav ul li a {
-    color: #fff;
+    color: #333; /* Change link color for contrast */
     text-decoration: none;
 }
 
@@ -72,23 +88,18 @@ nav ul li a:hover {
 }
 
 /* Footer styling */
+footer {
+    flex: 0 0 auto; /* Footer takes only as much space as needed */
+}
+
 footer p {
     margin: 0;
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    header, footer {
-        text-align: center;
-    }
-
-    nav ul {
-        display: block;
-    }
-
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
+/* Main container takes up the remaining height */
+main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 70px; /* Add padding to prevent content overlap with the fixed nav */
 }
-
