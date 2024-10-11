@@ -179,8 +179,15 @@ main {
     display: flex;
     gap: 1em;
 }
-
-.ui, .sandbox, .about, .project1, .project2, .projects {
+.about{
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(12px); /* Glassy blur effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+    border-radius: 20px; /* Rounded corners */
+}
+.ui, .sandbox, .project1, .project2, .projects {
     flex: 1;
     background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
     backdrop-filter: blur(12px); /* Glassy blur effect */
@@ -238,4 +245,62 @@ main {
     position: fixed;
     z-index: -1;
     backdrop-filter: blur(12vmax);
+}
+.dot {
+    height: 50px;
+    width: 50px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    top: 5%;
+    left: 4%;
+    position: fixed;
+  }
+.face{
+	position: relative;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: #838383;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.face::before{
+	content: '';
+	position: absolute;
+	top: 35px;
+	width: 25px;
+	height: 10px;
+	background: #ffffff;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	transition: .5s;
+}
+.eyes{
+	position: relative;
+	top: -4px;
+	display: flex
+}
+
+.eyes .eye{
+	position: relative;
+	width: 20px;
+	height: 20px;
+	display: block;
+	background: #fff;
+	margin: 0 1px;
+	border-radius: 50%;
+}
+
+.eyes .eye::before{
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 5px;
+	transform: translate(-50%, -50%);
+	width: 5px;
+	height: 5px;
+	background: #333;
+	border-radius: 50%;
 }
