@@ -24,13 +24,13 @@ header {
     background: none;
 }
 
-/* Navigation styles with animation */
+/* General nav bar styles */
 nav {
     position: fixed;
-    top: -5%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 3%;
+    top: -5%; /* Initially off the screen */
+    left: 50%; /* Centered horizontally */
+    transform: translateX(-50%); /* Centered horizontally */
+    width: 3%; /* Initial small width */
     height: 40px;
     z-index: 1000;
     background-color: rgba(255, 255, 255, 0.1);
@@ -41,8 +41,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     backdrop-filter: blur(12vmax);
-    animation: slideDown 1s ease-out forwards, expandWidth 1s ease-out 1s forwards;
 }
+
 
 nav * {
     visibility: hidden;
