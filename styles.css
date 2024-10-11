@@ -8,8 +8,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: black; /* Set background color of body to black */
+    color: #000000;
     margin: 0;
     padding: 0;
     display: flex;
@@ -19,31 +19,36 @@ body {
 
 /* Header styles */
 header {
-    flex: 0 0 auto; /* Header takes only as much space as needed */
-    position: relative; /* Positioning context for absolute children */
-    background: none; /* Set header background to none */
+    flex: 0 0 auto;
+    position: relative;
+    background: none;
 }
 
 /* Navigation styles with animation */
 nav {
     position: fixed;
-    top: -5%; /* Start off the screen at -5% */
+    top: -5%;
     left: 50%;
     transform: translateX(-50%);
-    width: 60%; /* Width remains 60% */
+    width: 3%;
+    height: 40px;
     z-index: 1000;
-    background-color: white;
-    border: 2px solid red;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex; /* Flexbox to allow logo and menu */
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    
-    /* Animation on page load */
-    animation: slideDown 1s ease-out forwards;
+    backdrop-filter: blur(12vmax);
+    animation: slideDown 1s ease-out forwards, expandWidth 1s ease-out 1s forwards;
 }
 
-/* Keyframes for the slide-down animation */
+nav * {
+    visibility: hidden;
+    animation: showText 0s ease-out 2s forwards;
+}
+
 @keyframes slideDown {
     0% {
         top: -5%;
@@ -53,25 +58,41 @@ nav {
     }
 }
 
-/* Logo (Bongani KaNjabulo) */
-#logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-    margin-left: 10px; /* Add some space on the left */
+@keyframes expandWidth {
+    0% {
+        width: 3%;
+    }
+    100% {
+        width: 60%;
+    }
 }
 
+@keyframes showText {
+    100% {
+        visibility: visible;
+    }
+}
+
+/* Logo */
+#logo {
+    font-size: 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 10px;
+}
+.LowerCase {
+    font-size: 0.8rem;
+}
 #logo:hover {
-    text-decoration: underline;
+    color: rgb(255, 255, 255);
 }
 
 /* Navigation menu */
 nav ul {
     list-style: none;
     padding: 0;
-    display: flex; /* Make the navigation items flexbox */
-    justify-content: center; /* Center the nav items */
+    display: flex;
+    justify-content: center;
 }
 
 nav ul li {
@@ -79,8 +100,9 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #333; /* Change link color for contrast */
+    color: #ffffff;
     text-decoration: none;
+    text-transform: uppercase;
 }
 
 nav ul li a:hover {
@@ -89,7 +111,7 @@ nav ul li a:hover {
 
 /* Footer styling */
 footer {
-    flex: 0 0 auto; /* Footer takes only as much space as needed */
+    flex: 0 0 auto;
 }
 
 footer p {
@@ -98,8 +120,122 @@ footer p {
 
 /* Main container takes up the remaining height */
 main {
-    flex: 1 0 auto;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 300px;	
+}
+
+.bento-container {
+    width: 960px;
+    height: 1440px;
+    padding: 2em;
+    display: flex;
+    gap: 1em;
+}
+
+.col-left {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 1em;
+}
+
+.col-right {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    padding-top: 70px; /* Add padding to prevent content overlap with the fixed nav */
+    gap: 1em;
+}
+
+.row-col {
+    flex: 0.5;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(12px); /* Glassy blur effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+    border-radius: 20px; /* Rounded corners */
+}
+
+/* Specific flex values */
+.tech {
+    flex: 0.25;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(12px); /* Glassy blur effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+    border-radius: 20px; /* Rounded corners */
+}
+
+.resume {
+    flex: 0.5;
+    display: flex;
+    gap: 1em;
+}
+
+.contact {
+    flex: 0.5;
+    display: flex;
+    gap: 1em;
+}
+
+.ui, .sandbox, .about, .project1, .project2, .projects {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(12px); /* Glassy blur effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+    border-radius: 20px; /* Rounded corners */
+}
+
+/* Blob animations for background effects */
+@keyframes rotate {
+    from {
+        rotate: 0deg;
+    }
+    50% {
+        scale: 1 1.5;
+    }
+    to {
+        rotate: 360deg;
+    }
+}
+
+#blob {
+    background-color: white;
+    height: 22vmax;
+    aspect-ratio: 2;
+    position: fixed;
+    left: 30%;
+    top: 30%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: linear-gradient(to right, aquamarine, mediumpurple);
+    animation: rotate 20s infinite;
+    opacity: 0.8;
+    z-index: -2;
+}
+
+#blob1 {
+    background-color: white;
+    height: 22vmax;
+    aspect-ratio: 2;
+    position: fixed;
+    left: 70%;
+    top: 70%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: linear-gradient(to right, aquamarine, mediumpurple);
+    animation: rotate 22s infinite;
+    opacity: 0.8;
+    z-index: -2;
+}
+
+#blur {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+    backdrop-filter: blur(12vmax);
 }
