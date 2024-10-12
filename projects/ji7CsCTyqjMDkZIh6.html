@@ -1,0 +1,311 @@
+<html><head><base href=""><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Stride Style - Modern Shoe Store</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  header {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    margin-right: 10px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 300;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #ff6b6b;
+  }
+  
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://websim.io/modern-shoe-store/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-top: 80px;
+  }
+  
+  .hero-content {
+    text-align: center;
+    color: #fff;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    background-color: #fff;
+    color: #ff6b6b;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .featured-products, .men-women-section {
+    padding: 80px 0;
+  }
+  
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+  
+  .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .product-info {
+    padding: 20px;
+  }
+  
+  .product-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .product-price {
+    font-size: 16px;
+    color: #ff6b6b;
+  }
+  
+  .men-women-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .category-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    height: 300px;
+  }
+  
+  .category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .category-card:hover .category-image {
+    transform: scale(1.1);
+  }
+  
+  .category-card:hover .category-overlay {
+    opacity: 1;
+  }
+  
+  .category-button {
+    background-color: #fff;
+    color: #333;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .category-button:hover {
+    background-color: #ff6b6b;
+    color: #fff;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" class="logo">
+        <img alt="Stride Style logo, a stylized shoe icon" src="https://websim.io/modern-shoe-store/images/logo.svg" width="40" height="40">
+        Stride Style
+      </a>
+      <div class="nav-links">
+        <a href="/men">Men</a>
+        <a href="/women">Women</a>
+        <a href="/kids">Kids</a>
+        <a href="/sale">Sale</a>
+      </div>
+    </nav>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Step Into Style</h1>
+        <p>Discover the perfect blend of comfort and fashion</p>
+        <a href="/shop-now" class="cta-button">Shop Now</a>
+      </div>
+    </section>
+    
+    <section class="featured-products container">
+      <h2>Featured Products</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <img alt="Urban Runner sneakers, sleek black design with white sole" src="https://websim.io/modern-shoe-store/images/shoe1.jpg" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Urban Runner</div>
+            <div class="product-price">$129.99</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <img alt="Chic Loafer, brown leather with tassels" src="https://websim.io/modern-shoe-store/images/shoe2.jpg" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Chic Loafer</div>
+            <div class="product-price">$89.99</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <img alt="Sport Elite running shoes, neon green with black accents" src="https://websim.io/modern-shoe-store/images/shoe3.jpg" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Sport Elite</div>
+            <div class="product-price">$149.99</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <img alt="Casual Comfort slip-ons, light blue canvas" src="https://websim.io/modern-shoe-store/images/shoe4.jpg" class="product-image">
+          <div class="product-info">
+            <div class="product-name">Casual Comfort</div>
+            <div class="product-price">$79.99</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="men-women-section container">
+      <h2>Shop by Category</h2>
+      <div class="men-women-grid">
+        <div class="category-card">
+          <img alt="Men's shoes collection, stylish leather boots and sneakers" src="https://websim.io/modern-shoe-store/images/mens-category.jpg" class="category-image">
+          <div class="category-overlay">
+            <a href="/men" class="category-button">Shop Men's</a>
+          </div>
+        </div>
+        <div class="category-card">
+          <img alt="Women's shoes collection, elegant heels and fashionable flats" src="https://websim.io/modern-shoe-store/images/womens-category.jpg" class="category-image">
+          <div class="category-overlay">
+            <a href="/women" class="category-button">Shop Women's</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2023 Stride Style. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const productCards = document.querySelectorAll('.product-card');
+      
+      productCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'scale(1.05)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'scale(1)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

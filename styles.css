@@ -360,6 +360,7 @@ span {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+    border: 0.5px solid rgba(255, 255, 255, 0.3);
 }
 .face::before{
 	content: '';
@@ -471,20 +472,25 @@ span {
   }
   .about h1 {
     position: relative;
-    top: 5%;
+    top: 3%;
     left: 15%;
-    font-size: 2rem; /* Larger font for the heading */
-    color: #ffffff; /* White color for better contrast */
-    margin-bottom: 0.5em; /* Space between the heading and the paragraph */
+    font-size: 1.5rem; /* Larger font for the heading */
+    color: #ffffff; /* White color for better contrast */ /* Space between the heading and the paragraph */
 }
-
+.about h2{
+    position: relative;
+    top: 1%;
+    left: 15%;
+    font-size: 1rem; /* Larger font for the heading */
+    color: #999898; /* White color for better contrast */  
+}
 .about p {
     position: relative;
     top: 5%;
     left: 5%;
-    max-width: 90%;
+    max-width: 80%;
     font-size: 1.2rem; /* Slightly larger font for the paragraph */
-    color: #b3b2b2; /* Light gray color for better readability */
+    color: #dadada; /* Light gray color for better readability */
     line-height: 1.5; /* Increase line spacing for better readability */
     margin-top: 0; /* Ensure no extra margin at the top of the paragraph */
 }
