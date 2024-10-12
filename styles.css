@@ -157,7 +157,7 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.1); /* Semi-transparent border */
     border-radius: 20px; /* Rounded corners */
     display: flex;
-    gap: 0.5em;
+    gap: 0em;
     align-items: center;
     justify-content: center;
 }
@@ -179,8 +179,12 @@ main {
     display: flex;
     gap: 0.5em;
 }
-.resumebox{
-    gap: 1em;
+.resumebox {
+    flex: 1;
+    display: flex; /* Ensures flex behavior for child elements */
+    gap: 1em; /* Controls the gap between the icons */
+    align-items: center; /* Centers icons vertically */
+    justify-content: center; /* Centers icons horizontally */
 }
 .contact {
     flex: 0.5;
@@ -204,7 +208,7 @@ main {
 }
 
 .about{
-    flex: 1;
+    flex: 0.93;
     background: rgba(255, 255, 255, 0.05); /* Semi-transparent white */
     backdrop-filter: blur(12px); /* Glassy blur effect */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -272,8 +276,8 @@ main {
     backdrop-filter: blur(12vmax);
 }
 .dot {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
@@ -283,8 +287,8 @@ main {
   }
 .face{
 	position: relative;
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	background: #838383;
 	display: flex;
@@ -294,9 +298,9 @@ main {
 .face::before{
 	content: '';
 	position: absolute;
-	top: 35px;
-	width: 25px;
-	height: 10px;
+	top: 27px;
+	width: 15px;
+	height: 7px;
 	background: #ffffff;
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
@@ -310,8 +314,8 @@ main {
 
 .eyes .eye{
 	position: relative;
-	width: 20px;
-	height: 20px;
+	width: 15px;
+	height: 15px;
 	display: block;
 	background: #fff;
 	margin: 0 1px;
@@ -361,7 +365,9 @@ main {
     position: relative;
     color: white;
   }
-  
+  .fa-upwork{
+    font-size: 3em;
+  }
   @keyframes autoplay {
     0% { transform: translate3d(0, 0, 0) }
     /* -50% so we are at the start again, thats why we have each slide twice  */
@@ -397,19 +403,35 @@ main {
   .about h1 {
     position: relative;
     top: 5%;
-    left: 18%;
+    left: 15%;
     font-size: 2rem; /* Larger font for the heading */
     color: #ffffff; /* White color for better contrast */
-    margin-bottom: 0.5em; /* Space between the heading and the paragraph */
+    margin-bottom: 0.1em; /* Space between the heading and the paragraph */
 }
 
 .about p {
     position: relative;
-    top: 10%;
+    top: 5%;
     left: 5%;
     max-width: 90%;
     font-size: 1.2rem; /* Slightly larger font for the paragraph */
-    color: #e0e0e0; /* Light gray color for better readability */
+    color: #b3b2b2; /* Light gray color for better readability */
     line-height: 1.5; /* Increase line spacing for better readability */
     margin-top: 0; /* Ensure no extra margin at the top of the paragraph */
+}
+.fa-compact-disc{
+    font-size: 0.8em;
+}
+/* Ensure that the anchor tag behaves exactly like an icon */
+.row-col a {
+    display: flex; /* Ensures icons inside are centered */
+    align-items: center; /* Vertically centers icons */
+    justify-content: center; /* Horizontally centers icons */
+    color: inherit; /* Ensures the icons retain their color */
+    text-decoration: none; /* Removes underline */
+}
+/* Optional hover effect */
+.row-col a:hover {
+    color: #ffffff;
+    opacity: 0.8; /* Optional opacity effect */
 }
