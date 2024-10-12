@@ -406,7 +406,7 @@ main {
     left: 15%;
     font-size: 2rem; /* Larger font for the heading */
     color: #ffffff; /* White color for better contrast */
-    margin-bottom: 0.1em; /* Space between the heading and the paragraph */
+    margin-bottom: 0.5em; /* Space between the heading and the paragraph */
 }
 
 .about p {
