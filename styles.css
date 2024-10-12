@@ -182,7 +182,7 @@ main {
 .resumebox {
     flex: 1;
     display: flex; /* Ensures flex behavior for child elements */
-    gap: 1em; /* Controls the gap between the icons */
+    gap: 2em; /* Controls the gap between the icons */
     align-items: center; /* Centers icons vertically */
     justify-content: center; /* Centers icons horizontally */
 }
