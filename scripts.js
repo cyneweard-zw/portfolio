@@ -84,3 +84,78 @@ document.documentElement.addEventListener('mousemove', event => {
 		e.style.transform = "rotate(" + rot + "deg)";
 	})
 })
+document.addEventListener("DOMContentLoaded", (event) => {
+    gsap.registerPlugin(MotionPathPlugin);
+
+    let isSwapped = false; // Flag to track if animations are swapped
+
+    // Store the current position of the moon and sun
+    let moonPosition = { x: 0, y: 0 }; 
+    let sunPosition = { x: 0, y: 0 };
+
+    // Function to trigger animations
+    function triggerAnimations() {
+        if (!isSwapped) {
+            // Default animation paths
+            gsap.to("#moon", {
+                motionPath: {
+                    path: [{x: moonPosition.x + 50, y: moonPosition.y - 25}, {x: moonPosition.x + 80, y: moonPosition.y}],
+                },
+                transformOrigin: "50% 50%",
+                duration: 2,
+                onComplete: function() {
+                    // Update the moon's new position
+                    moonPosition.x += 80; 
+                    moonPosition.y = moonPosition.y; // Remains the same along y
+                }
+            });
+
+            gsap.to("#sun", {
+                motionPath: {
+                    path: [{x: sunPosition.x - 50, y: sunPosition.y + 25}, {x: sunPosition.x - 80, y: sunPosition.y}],
+                },
+                transformOrigin: "50% 50%",
+                duration: 2,
+                onComplete: function() {
+                    // Update the sun's new position
+                    sunPosition.x -= 80; 
+                    sunPosition.y = sunPosition.y; // Remains the same along y
+                }
+            });
+        } else {
+            // Swapped animation paths
+            gsap.to("#moon", {
+                motionPath: {
+                    path: [{x: moonPosition.x - 50, y: moonPosition.y + 25}, {x: moonPosition.x - 80, y: moonPosition.y}],
+                },
+                transformOrigin: "50% 50%",
+                duration: 2,
+                onComplete: function() {
+                    // Update the moon's new position
+                    moonPosition.x -= 80; 
+                    moonPosition.y = moonPosition.y; // Remains the same along y
+                }
+            });
+
+            gsap.to("#sun", {
+                motionPath: {
+                    path: [{x: sunPosition.x + 50, y: sunPosition.y - 25}, {x: sunPosition.x + 80, y: sunPosition.y}],
+                },
+                transformOrigin: "50% 50%",
+                duration: 2,
+                onComplete: function() {
+                    // Update the sun's new position
+                    sunPosition.x += 80; 
+                    sunPosition.y = sunPosition.y; // Remains the same along y
+                }
+            });
+        }
+
+        // Toggle the swap flag after each click
+        isSwapped = !isSwapped;
+    }
+
+    // Add event listeners to both icons
+    document.querySelector("#moon").addEventListener("click", triggerAnimations);
+    document.querySelector("#sun").addEventListener("click", triggerAnimations);
+});
