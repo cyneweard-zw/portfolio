@@ -274,15 +274,15 @@ span {
     color: white;
 }
 .title {
-    font-size: 2em;
+    font-size: 1.5em;
     position: absolute;
     top: 5%;
     left: 5%;
 }
 .Soon{
-    font-size: 1em;
+    font-size: 0.8em;
     position: absolute;
-    top: 60px;
+    top: 47px;
     left: 5%;
     color: rgba(255, 255, 255, 0.699);
 }
@@ -509,4 +509,12 @@ span {
 .row-col a:hover {
     color: #ffffff;
     opacity: 0.8; /* Optional opacity effect */
+}
+.projectImg{
+    position: relative;
+    width: 90%;
+    height: 65%;
+    left: 5%;
+    top: 20%;
+    border-radius: 20px;
 }
