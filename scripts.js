@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Animate the SVG circle as you scroll to increase its size
     gsap.to("circle", {
-        attr: { r: 150 }, // Animate radius from 1 to 150
+        attr: { r: 250 }, // Animate radius from 1 to 150
         ease: "none",      // No easing, the growth happens linearly with scroll
         scrollTrigger: {
             trigger: ".hero",  // Start the animation when scrolling the .hero section

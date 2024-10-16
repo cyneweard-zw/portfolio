@@ -58,19 +58,28 @@ svg > rect {
 }
 
 .about {
-    min-height: 200vh; /* Minimum height for the about section */
-    background-color: #000000; /* Black background */
-    color: #ffffff; /* White text color for better contrast */
-    padding: 40px 20px; /* Padding for the section */
-    text-align: center; /* Center text */
+    min-height: 200vh; /* Ensures full height */
+    background-color: #000000;
+    color: #ffffff; 
+    padding: 40px 20px;
+    text-align: left; /* Left-align text */
+}
+
+.about {
+    min-height: 200vh;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: left; /* Left-align the text */
 }
 
 .about .content {
-    max-width: 800px; /* Limit the width of the content */
-    margin: 0 auto; /* Center the content */
+    max-width: 800px; /* Restrict the width for readability */
+    margin: 0 auto; /* Center the content horizontally */
 }
 
 .about p {
-    font-size: 3rem; /* Standard font size for paragraphs */
-    line-height: 1.5; /* Better line spacing */
+    font-size: 3.5rem; /* Adjust font size for readability */
+    line-height: 1.5; /* Line height for better spacing */
+    text-wrap: balance; /* Ensure balanced text wrapping */
 }
