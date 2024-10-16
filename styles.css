@@ -5,7 +5,7 @@ body {
 }
 
 .hero {
-    min-height: 400vh; /* Minimum height set to 400% of the viewport height */
+    min-height: 200vh; /* Minimum height set to 200% of the viewport height */
     background-color: #000000; /* Black background */
     display: flex;
     justify-content: center;
@@ -13,10 +13,11 @@ body {
     text-align: center;
     position: relative; 
     width: 100vw; /* Ensure the hero section does not exceed the viewport width */
+    z-index: -1; /* Layering order, may want to adjust this */
 }
 
 .hero-svg {
-    position: absolute; 
+    position: fixed; 
     width: 100vw; 
     height: 100vh; 
     top: 0%;
@@ -38,15 +39,15 @@ svg text {
 }
 
 .hero-name {
-    font-size: 0.25rem;
+    font-size: 0.25rem; /* Name text size */
 }
 
 .hero-text {
-    font-size: 0.7058520225rem;
+    font-size: 0.7058520225rem; /* Additional text size */
 }
 
 svg rect {
-    fill: white;
+    fill: white; /* Fill color for the rectangle */
     border: 2px solid rgb(255, 0, 0); /* Border for the rectangle */
     width: 100%; /* Ensure width is set to 100% */
 }
@@ -54,4 +55,22 @@ svg rect {
 svg > rect {
     -webkit-mask: url(#mask);
     mask: url(#mask);
+}
+
+.about {
+    min-height: 200vh; /* Minimum height for the about section */
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text color for better contrast */
+    padding: 40px 20px; /* Padding for the section */
+    text-align: center; /* Center text */
+}
+
+.about .content {
+    max-width: 800px; /* Limit the width of the content */
+    margin: 0 auto; /* Center the content */
+}
+
+.about p {
+    font-size: 3rem; /* Standard font size for paragraphs */
+    line-height: 1.5; /* Better line spacing */
 }

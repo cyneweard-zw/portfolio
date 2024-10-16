@@ -23,22 +23,27 @@
 <body>
     <section class="hero">
         <div class="hero-svg"> <!-- Renamed the class from video-container to hero-svg -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 80" preserveAspectRatio="xMidYMid slice">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 80" preserveAspectRatio="xMinYMid slice">
                 <defs>
                     <mask id="mask" x="0" y="0" width="100%" height="100%">
                         <rect x="0" y="0" width="100%" height="100%" />
-                         <!-- Text with alignment adjustments -->
-                        <text x="25.2%" y="35%" class="hero-name" text-anchor="left" dominant-baseline="middle">Bongani Ncube</text>
-                        <text x="25%" y="43%" class="hero-text" text-anchor="left" dominant-baseline="middle">Developer</text>
-                        <text x="25%" y="53.5%" class="hero-text" text-anchor="left" dominant-baseline="middle">Portfolio</text>
+                        <!-- Text with alignment adjustments -->
+                        <text x="1.2%" y="35%" class="hero-name" text-anchor="left" dominant-baseline="middle">Bongani Ncube</text>
+                        <text x="1%" y="43%" class="hero-text" text-anchor="left" dominant-baseline="middle">Developer</text>
+                        <text x="1%" y="53.5%" class="hero-text" text-anchor="left" dominant-baseline="middle">Portfolio</text>
                         <!-- Circle added to the mask -->
-                        <circle cx="48.5%" cy="56%" r="1" /> <!-- Circle is part of the mask -->
+                        <circle cx="24.5%" cy="56%" r="1" /> <!-- Circle is part of the mask -->
                     </mask>
                 </defs>
                 <rect x="0" y="0" width="100%" height="100%" />
                 <rect x="0" y="0" width="100%" height="100%" style="mask: url(#mask);" fill="red" /> <!-- This rectangle shows the masked area -->
             </svg>
         </div> <!-- End of hero-svg -->
+    </section>
+    <section class="about">
+        <div class="content">
+            <p>I’m a web developer who enjoys creating clean, functional websites that work seamlessly. I focus on making fast, responsive sites with simple, effective design.</p>
+        </div>
     </section>
     <script src="scripts.js"></script>
 </body>
