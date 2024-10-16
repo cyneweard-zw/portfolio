@@ -1,1 +1,57 @@
+body {
+    background: white;
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
+.hero {
+    min-height: 400vh; /* Minimum height set to 400% of the viewport height */
+    background-color: #000000; /* Black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative; 
+    width: 100vw; /* Ensure the hero section does not exceed the viewport width */
+}
+
+.hero-svg {
+    position: absolute; 
+    width: 100vw; 
+    height: 100vh; 
+    top: 0%;
+}
+
+svg { 
+    width: 100vw; /* Ensure the SVG does not exceed the viewport width */
+    position: absolute;
+    top: 0;
+    left: 0; 
+    height: 100%; /* Ensure height is set to 100% */
+    border: 2px solid black; /* Border around the SVG */
+}
+
+svg text {
+    font-family: 'Helvetica', sans-serif; /* Changed font to Helvetica */
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.hero-name {
+    font-size: 0.25rem;
+}
+
+.hero-text {
+    font-size: 0.7058520225rem;
+}
+
+svg rect {
+    fill: white;
+    border: 2px solid rgb(255, 0, 0); /* Border for the rectangle */
+    width: 100%; /* Ensure width is set to 100% */
+}
+
+svg > rect {
+    -webkit-mask: url(#mask);
+    mask: url(#mask);
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Portfolio | Bongani Ncube</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- GSAP CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EaselPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/PixiPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EasePack.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-svg"> <!-- Renamed the class from video-container to hero-svg -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 80" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <mask id="mask" x="0" y="0" width="100%" height="100%">
+                        <rect x="0" y="0" width="100%" height="100%" />
+                         <!-- Text with alignment adjustments -->
+                        <text x="25.2%" y="35%" class="hero-name" text-anchor="left" dominant-baseline="middle">Bongani Ncube</text>
+                        <text x="25%" y="43%" class="hero-text" text-anchor="left" dominant-baseline="middle">Developer</text>
+                        <text x="25%" y="53.5%" class="hero-text" text-anchor="left" dominant-baseline="middle">Portfolio</text>
+                        <!-- Circle added to the mask -->
+                        <circle cx="48.5%" cy="56%" r="1" /> <!-- Circle is part of the mask -->
+                    </mask>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" />
+                <rect x="0" y="0" width="100%" height="100%" style="mask: url(#mask);" fill="red" /> <!-- This rectangle shows the masked area -->
+            </svg>
+        </div> <!-- End of hero-svg -->
+    </section>
+    <script src="scripts.js"></script>
+</body>
+</html>
