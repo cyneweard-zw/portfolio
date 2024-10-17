@@ -63,14 +63,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fade out the entire paragraph after the reveal is done
     const fadeOut = gsap.to(".about .content p", {
         opacity: 0,          // Fade out the entire paragraph
-        ease: "power2.out",  // Smooth easing for the fade out
-        duration: 1,         // Duration of the fade out
+        ease: "power3.out",  // Smooth easing for the fade out
+        duration: 0.5,         // Duration of the fade out
         scrollTrigger: {
             trigger: ".about",   // Trigger at the same about section
-            start: "bottom bottom", // Start fading out when the bottom of the section hits the bottom of the viewport
-            end: "+=100",         // Slightly continue beyond the trigger to create the fade out
+            start: "middle middle ", // Start fading out when the bottom of the section hits the bottom of the viewport
+            end: "bottom",         // Slightly continue beyond the trigger to create the fade out
             scrub: true,          // Tie the animation to scroll
-            markers: false        // Hide markers for the fade-out
+            markers: false,  
+            pin: true             // Hide markers for the fade-out
         }
     });
 });
