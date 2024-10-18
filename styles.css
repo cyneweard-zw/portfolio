@@ -5,51 +5,49 @@ body {
 }
 
 .hero {
-    min-height: 200vh; /* Minimum height set to 200% of the viewport height */
-    background-color: #000000; /* Black background */
+    min-height: 200vh;
+    background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    position: relative; 
-    width: 100vw; /* Ensure the hero section does not exceed the viewport width */
-    z-index: -1; /* Layering order, may want to adjust this */
+    position: relative;
+    width: 100vw;
+    z-index: -1;
 }
 
 .hero-svg {
-    position: fixed; 
-    width: 100vw; 
-    height: 100vh; 
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
     top: 0%;
 }
 
-svg { 
-    width: 100vw; /* Ensure the SVG does not exceed the viewport width */
+svg {
+    width: 100vw;
     position: absolute;
     top: 0;
-    left: 0; 
-    height: 100%; /* Ensure height is set to 100% */
-    border: 2px solid black; /* Border around the SVG */
+    left: 0;
+    height: 100%;
 }
 
 svg text {
-    font-family: 'Helvetica', sans-serif; /* Changed font to Helvetica */
+    font-family: 'Helvetica', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
 }
 
 .hero-name {
-    font-size: 0.25rem; /* Name text size */
+    font-size: 0.25rem;
 }
 
 .hero-text {
-    font-size: 0.7058520225rem; /* Additional text size */
+    font-size: 0.7058520225rem;
 }
 
 svg rect {
-    fill: white; /* Fill color for the rectangle */
-    border: 2px solid rgb(255, 0, 0); /* Border for the rectangle */
-    width: 100%; /* Ensure width is set to 100% */
+    fill: white;
+    width: 100%;
 }
 
 svg > rect {
@@ -58,28 +56,79 @@ svg > rect {
 }
 
 .about {
-    min-height: 200vh; /* Ensures full height */
-    background-color: #000000;
-    color: #ffffff; 
-    padding: 40px 20px;
-    text-align: left; /* Left-align text */
-}
-
-.about {
     min-height: 100vh;
     background-color: #000000;
     color: #ffffff;
     padding: 40px 20px;
-    text-align: left; /* Left-align the text */
+    text-align: left;
 }
 
 .about .content {
-    max-width: 800px; /* Restrict the width for readability */
-    margin: 0 auto; /* Center the content horizontally */
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .about p {
-    font-size: 3.5rem; /* Adjust font size for readability */
-    line-height: 1.5; /* Line height for better spacing */
-    text-wrap: balance; /* Ensure balanced text wrapping */
+    font-size: 3.5rem;
+    line-height: 1.5;
+    text-wrap: balance;
 }
+
+.showcase {
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 40px 20px;
+    text-align: left;
+}
+
+.showcase .content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.showcase h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.showcase p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
+.container {
+    height: 90vh;
+    text-align: center;
+  }
+  
+  .phone {
+    position: relative;
+    display: inline-block;
+    width: 45vh; /* Adjusts size based on viewport height */
+    height: auto;
+    /* Rotate by 90 degrees and scale up by 20% */
+    transform-origin: center center; /* Ensures the transformations occur from the center */
+}
+
+
+  
+  .phone img {
+    width: 100%; /* Make the phone image fill the container */
+    height: auto;
+  }
+  
+  .screen {
+    position: absolute;
+    height: 70%; /* Defines the visible part of the screen */
+    top: 15%;
+    left: 13.1%;
+    width: 76%;
+    overflow: hidden;
+    background-color: #e00909;
+  }
+  
+  .screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fits inside the screen without distortion */
+  }
