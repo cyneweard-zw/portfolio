@@ -1,0 +1,271 @@
+<html><head><base href="https://resonancehotel.com/rooms">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rooms & Suites | Resonance Hotel</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --primary: #2C3E50;
+    --accent: #E67E22;
+    --light: #ECF0F1;
+}
+
+body {
+    background-color: var(--light);
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 50px;
+    background: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.page-header {
+    margin-top: 80px;
+    padding: 60px 0;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://images.unsplash.com/photo-1566665797739-1674de7a421a') center/cover;
+    color: white;
+}
+
+.rooms-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.room-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    transition: 0.3s;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.room-image {
+    width: 40%;
+    position: relative;
+    overflow: hidden;
+}
+
+.room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.room-card:hover .room-image img {
+    transform: scale(1.1);
+}
+
+.room-details {
+    width: 60%;
+    padding: 30px;
+}
+
+.room-type {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.room-description {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.amenity {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    background: var(--light);
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.book-now {
+    display: inline-block;
+    padding: 12px 25px;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.book-now:hover {
+    background: #d35400;
+}
+
+@media (max-width: 768px) {
+    .room-card {
+        flex-direction: column;
+    }
+    
+    .room-image, .room-details {
+        width: 100%;
+    }
+    
+    .room-image {
+        height: 250px;
+    }
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">Resonance</a>
+        <div class="nav-links">
+            <a href="/rooms">Rooms</a>
+            <a href="/dining">Dining</a>
+            <a href="/spa">Spa</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Our Rooms & Suites</h1>
+        <p>Experience luxury in every detail</p>
+    </header>
+
+    <main class="rooms-container">
+        <div class="room-card">
+            <div class="room-image">
+                <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc" alt="Deluxe King Room - modern luxury room with king bed and city view" width="600" height="400">
+            </div>
+            <div class="room-details">
+                <h2 class="room-type">Deluxe King Room</h2>
+                <p class="room-description">Immerse yourself in luxury with our spacious Deluxe King Room. Features a premium king-size bed, panoramic city views, and modern amenities for the perfect stay.</p>
+                <div class="amenities">
+                    <span class="amenity"><i class="fas fa-wifi"></i> Free WiFi</span>
+                    <span class="amenity"><i class="fas fa-tv"></i> 55" Smart TV</span>
+                    <span class="amenity"><i class="fas fa-bath"></i> Rain Shower</span>
+                    <span class="amenity"><i class="fas fa-coffee"></i> Coffee Machine</span>
+                </div>
+                <div class="price">From $299/night</div>
+                <a href="/booking?room=deluxe-king" class="book-now">Book Now</a>
+            </div>
+        </div>
+
+        <div class="room-card">
+            <div class="room-image">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" alt="Executive Suite - luxurious suite with separate living area and premium amenities" width="600" height="400">
+            </div>
+            <div class="room-details">
+                <h2 class="room-type">Executive Suite</h2>
+                <p class="room-description">Our Executive Suite offers the perfect blend of luxury and comfort with a separate living area, premium furnishings, and exclusive access to our Executive Lounge.</p>
+                <div class="amenities">
+                    <span class="amenity"><i class="fas fa-couch"></i> Living Area</span>
+                    <span class="amenity"><i class="fas fa-glass-martini-alt"></i> Mini Bar</span>
+                    <span class="amenity"><i class="fas fa-concierge-bell"></i> Butler Service</span>
+                    <span class="amenity"><i class="fas fa-swimmer"></i> Pool Access</span>
+                </div>
+                <div class="price">From $499/night</div>
+                <a href="/booking?room=executive-suite" class="book-now">Book Now</a>
+            </div>
+        </div>
+
+        <div class="room-card">
+            <div class="room-image">
+                <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461" alt="Presidential Suite - ultimate luxury suite with panoramic views and full amenities" width="600" height="400">
+            </div>
+            <div class="room-details">
+                <h2 class="room-type">Presidential Suite</h2>
+                <p class="room-description">The epitome of luxury, our Presidential Suite features multiple rooms, a private terrace, and personalized service for an unforgettable stay.</p>
+                <div class="amenities">
+                    <span class="amenity"><i class="fas fa-door-open"></i> Multiple Rooms</span>
+                    <span class="amenity"><i class="fas fa-utensils"></i> Private Dining</span>
+                    <span class="amenity"><i class="fas fa-car"></i> Limo Service</span>
+                    <span class="amenity"><i class="fas fa-spa"></i> Private Spa</span>
+                </div>
+                <div class="price">From $999/night</div>
+                <a href="/booking?room=presidential-suite" class="book-now">Book Now</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Intersection Observer for smooth fade-in animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.room-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            observer.observe(card);
+        });
+
+        // Image lazy loading
+        document.querySelectorAll('img').forEach(img => {
+            img.loading = 'lazy';
+        });
+    </script>
+</body>
+</html>
