@@ -11,14 +11,18 @@ nav {
     background-color: #333;
     padding: 10px 0;
     position: fixed;
-    width: 100%;
-    top: 0;
+    width: 90%; /* 90% of the screen width */
+    top: 5%;    /* 5% from the top of the screen */
+    left: 50%;  /* Center the navbar horizontally */
+    transform: translateX(-50%); /* Centering trick */
     display: flex; /* Flexbox to align logo and menu */
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    border-radius: 15px; /* Rounded corners */
 }
 
+/* Logo styles */
 nav .logo {
     margin-left: 20px;
 }
@@ -30,6 +34,7 @@ nav .logo a {
     font-weight: bold;
 }
 
+/* Menu styles */
 nav ul {
     list-style-type: none;
     margin: 0;
