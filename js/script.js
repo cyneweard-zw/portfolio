@@ -16,22 +16,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
       CustomEase
     );
   
-    // Animate the navbar sliding down and expanding its width from the center
+    // Slide-down and center-outward expand animation for the nav bar
     gsap.from("nav", {
-      y: "-100%",        // Start above the viewport
-      width: "5%",       // Start with 5% width
-      duration: 1.5,     // Duration for both sliding down and expanding width
-      ease: "power2.out", // Smooth easing for both animations
-      onComplete: () => {
-        // After sliding down, animate width expansion
-        gsap.to("nav", { 
-          width: "90%",     // Expand to 90% width
-          duration: 0.5,    // Duration for the width expansion
-          ease: "power2.out" // Smooth easing for width expansion
-        });
-      }
+      y: "-100%",     // Start above the viewport
+      scaleX: 0.05,   // Start at 5% width scale from the center
+      transformOrigin: "center center", // Ensure scaling happens from the center
+      duration: 1.5,  // Duration for the entire animation
+      ease: "power2.out", // Smooth easing
     });
   
-    console.log("GSAP navbar slide-down with width expansion triggered!");
+    console.log("GSAP navbar slide-down and center-outward expansion triggered!");
   });
   

@@ -11,15 +11,16 @@ nav {
     background-color: #333;
     padding: 10px 0;
     position: fixed;
-    width: 90%;  /* Final width after the animation */
+    width: 90%;  /* Final width after scaling */
     top: 5%;     /* 5% from the top of the screen */
-    left: 50%;   /* Center the navbar horizontally */
-    transform: translateX(-50%); /* Horizontal centering */
+    left: 50%;
+    transform: translateX(-50%); /* Center the navbar horizontally */
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
     border-radius: 15px; /* Rounded corners */
+    transform-origin: center center; /* Scaling origin for the animation */
 }
 
 
