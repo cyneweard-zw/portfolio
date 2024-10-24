@@ -1,0 +1,82 @@
+/* Reset basic styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Navbar styles */
+nav {
+    background-color: #333;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+    border-radius: 4px;
+}
+
+/* Section Styles */
+section {
+    min-height: 100vh;  /* Each section takes up the full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#hero {
+    background-color: #f44336;
+    color: white;
+}
+
+#about-showcase {
+    background-color: #2196F3;
+    color: white;
+}
+
+#about {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#showcase {
+    background-color: #FFEB3B;
+    color: black;
+}
+
+#projects {
+    background-color: #9C27B0;
+    color: white;
+}
+
+#contact {
+    background-color: #FF5722;
+    color: white;
+}
