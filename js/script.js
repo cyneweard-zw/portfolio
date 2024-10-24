@@ -1,2 +1,1 @@
-// Example JavaScript code, to be expanded later
-console.log("Navbar added!");
+console.log("Contact link as a card added!");

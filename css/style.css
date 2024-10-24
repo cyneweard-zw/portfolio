@@ -20,7 +20,7 @@ nav {
 }
 
 nav .logo {
-    margin-left: 20px; /* Adjust logo margin */
+    margin-left: 20px;
 }
 
 nav .logo a {
@@ -51,6 +51,22 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #575757;
     border-radius: 4px;
+}
+
+/* Contact Card Styles */
+nav ul li a.contact-card {
+    background-color: #ff5722;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+nav ul li a.contact-card:hover {
+    background-color: #e64a19;
+    transform: translateY(-5px);
 }
 
 /* Section Styles */
@@ -86,10 +102,5 @@ section {
 
 #projects {
     background-color: #9C27B0;
-    color: white;
-}
-
-#contact {
-    background-color: #FF5722;
     color: white;
 }
