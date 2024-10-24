@@ -13,14 +13,27 @@ nav {
     position: fixed;
     width: 100%;
     top: 0;
+    display: flex; /* Flexbox to align logo and menu */
+    justify-content: space-between;
+    align-items: center;
     z-index: 1000;
+}
+
+nav .logo {
+    margin-left: 20px; /* Adjust logo margin */
+}
+
+nav .logo a {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-align: center;
 }
 
 nav ul li {
