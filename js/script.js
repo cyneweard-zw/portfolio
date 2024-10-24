@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-    // Register GSAP plugins (if any are needed in the future)
+    // Register GSAP plugins (if needed)
     gsap.registerPlugin(
       Flip,
       ScrollTrigger,
@@ -16,13 +16,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
       CustomEase
     );
   
-    // Slide-down animation for the nav bar
+    // Slide-down and expand animation for the nav bar
     gsap.from("nav", {
-      y: "-100%", // Start above the viewport
-      duration: 1, // Animation duration
-      ease: "power2.out", // Ease out for smoothness
+      y: "-100%",     // Start above the viewport
+      width: "5%",    // Start at 5% width
+      duration: 1.5,  // Animation duration
+      ease: "power2.out", // Smooth easing
+      onComplete: () => {
+        gsap.to("nav", { width: "90%", duration: 0.5, ease: "power2.out" }); // Expand to 90% width
+      }
     });
   
-    console.log("GSAP navbar slide-down animation triggered!");
+    console.log("GSAP navbar slide-down and expand animation triggered!");
   });
   

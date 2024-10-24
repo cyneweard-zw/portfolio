@@ -19,7 +19,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    border-radius: 15px; /* Rounded corners */
+    border-radius: 24px; /* Rounded corners */
 }
 
 /* Logo styles */
