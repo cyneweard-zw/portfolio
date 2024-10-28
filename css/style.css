@@ -29,7 +29,7 @@ body {
     align-items: center;
 }
 
-.hero-content p {
+.hero-text p {
     font-size: 1.5rem; /* Adjust as needed */
     margin-bottom: 20px;
 }
