@@ -11,7 +11,29 @@ body {
 }
 
 /* Section Styling */
-.hero, .about, .projects, .contact {
+.about, .projects, .contact {
     height: 100vh; /* Full viewport height for all sections */
     width: 100%;
+}
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-content p {
+    font-size: 1.5rem; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+
+.circle {
+    margin-top: 10px;
 }
