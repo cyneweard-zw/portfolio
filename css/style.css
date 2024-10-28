@@ -11,22 +11,7 @@ body {
 }
 
 /* Section Styling */
-.hero {
-    height: 100vh; /* Full viewport height */
-    width: 100%;
-}
-
-.about {
-    height: 60vh; /* 60% of viewport height */
-    width: 100%;
-}
-
-.projects {
-    height: 80vh; /* 80% of viewport height */
-    width: 100%;
-}
-
-.contact {
-    height: 50vh; /* 50% of viewport height */
+.hero, .about, .projects, .contact {
+    height: 100vh; /* Full viewport height for all sections */
     width: 100%;
 }
