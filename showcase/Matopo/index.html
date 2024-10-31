@@ -1,769 +1,896 @@
 <!DOCTYPE html><html><head><base href="https://matopo.hotel">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Matopo Hotel | Luxury at the Edge of Wonder</title>
-<style>
-    :root {
-        --primary: #1a472a;
-        --accent: #2d5a27;
-        --light: #ffffff;
-        --dark: #000000;
-    }
-    
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    body {
-        background-color: var(--light);
-    }
-
-    .hero {
-        height: 100vh;
-        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e') center/cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .hero-content {
-        text-align: center;
-        z-index: 2;
-    }
-
-    .hero h1 {
-        font-size: 4rem;
-        margin-bottom: 1rem;
-        animation: fadeInUp 1s ease;
-    }
-
-    .hero p {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-        animation: fadeInUp 1s ease 0.3s backwards;
-    }
-
-    .cta-btn {
-        padding: 1rem 2rem;
-        background: var(--accent);
-        color: white;
-        text-decoration: none;
-        border-radius: 30px;
-        transition: all 0.3s;
-        animation: fadeInUp 1s ease 0.6s backwards;
-        display: inline-block;
-    }
-
-    .cta-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        background: var(--primary);
-    }
-
-    nav {
-        position: fixed;
-        width: 100%;
-        padding: 1.5rem;
-        z-index: 100;
-        background: transparent;
-        transition: all 0.3s;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    nav.scrolled {
-        background: var(--dark);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    nav.scrolled a {
-        color: var(--light);
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 2rem;
-    }
-
-    nav a {
-        color: white;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s;
-    }
-
-    nav a:hover {
-        color: var(--accent);
-    }
-
-    .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .logo svg {
-        width: 30px;
-        height: 30px;
-        fill: currentColor;
-        transition: all 0.3s;
-    }
-
-    .logo:hover svg {
-        transform: scale(1.1);
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matopo Hotel | Luxury at the Edge of Wonder</title>
+    <style>
+        :root {
+            --primary: #1a472a;
+            --accent: #2d5a27;
+            --light: #ffffff;
+            --dark: #000000;
         }
-        to {
-            opacity: 1;
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+    
+        body {
+            background-color: var(--light);
+        }
+    
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+    
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+    
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+    
+        .cta-btn {
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.6s backwards;
+            display: inline-block;
+        }
+    
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background: var(--primary);
+        }
+    
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem;
+            z-index: 100;
+            background: transparent;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        nav.scrolled {
+            background: var(--dark);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    
+        nav.scrolled a {
+            color: var(--light);
+        }
+    
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+    
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+    
+        nav a:hover {
+            color: var(--accent);
+        }
+    
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    
+        .logo svg {
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
+            transition: all 0.3s;
+        }
+    
+        .logo:hover svg {
+            transform: scale(1.1);
+        }
+    
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 99;
+            }
+        
+            .nav-links.active {
+                display: flex;
+            }
+        
+            .hamburger {
+                display: block;
+                position: relative;
+                width: 30px;
+                height: 20px;
+                cursor: pointer;
+                z-index: 100;
+            }
+        
+            .hamburger span {
+                display: block;
+                width: 100%;
+                height: 2px;
+                background: white;
+                position: absolute;
+                transition: 0.3s;
+            }
+        
+            .hamburger span:nth-child(1) { top: 0; }
+            .hamburger span:nth-child(2) { top: 9px; }
+            .hamburger span:nth-child(3) { top: 18px; }
+        
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+        
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+        
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+        
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        
+            .hero p {
+                font-size: 1.2rem;
+            }
+        
+            .booking-form {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+        
+            .room-card {
+                margin: 0 1rem;
+            }
+        
+            .features {
+                padding: 3rem 1rem;
+            }
+        
+            .video-container {
+                margin: 0 1rem;
+            }
+        
+            .experiences-grid {
+                padding: 0 1rem;
+            }
+        
+            .sitemap-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+        
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    
+        @media screen and (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        
+            .section-title {
+                font-size: 2rem;
+            }
+        
+            .sitemap-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+        .booking-section {
+            padding: 3rem 2rem;
+            background: var(--primary);
+            color: var(--light);
+        }
+    
+        .booking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    
+        .booking-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    
+        .booking-form select,
+        .booking-form input {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+    
+        .booking-form button {
+            padding: 0.8rem;
+            background: var(--accent);
+            color: var(--light);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+    
+        .booking-form button:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+    
+        .features {
+            padding: 5rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            background: var(--light);
+        }
+    
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s;
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+        }
+    
+        .feature:hover {
+            transform: translateY(-10px);
+            background: var(--accent);
+            color: var(--light);
+        }
+    
+        .feature:hover svg {
+            fill: var(--light);
+        }
+    
+        .feature:hover h3,
+        .feature:hover p {
+            color: var(--light);
+        }
+    
+        .feature svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+            fill: var(--accent);
+            transition: all 0.3s;
+        }
+    
+        .feature h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+    
+        .feature p {
+            color: var(--dark);
+            line-height: 1.6;
+            transition: all 0.3s;
+        }
+    
+        .gallery {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+    
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+    
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 400px;
+        }
+    
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+    
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+    
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 2rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+    
+        .gallery-item:hover .gallery-overlay {
             transform: translateY(0);
         }
-    }
-
-    .booking-section {
-        padding: 3rem 2rem;
-        background: var(--primary);
-        color: var(--light);
-    }
-
-    .booking-container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .booking-form {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        background: var(--light);
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-
-    .booking-form select,
-    .booking-form input {
-        padding: 0.8rem;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 1rem;
-    }
-
-    .booking-form button {
-        padding: 0.8rem;
-        background: var(--accent);
-        color: var(--light);
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s;
-        font-size: 1rem;
-    }
-
-    .booking-form button:hover {
-        background: var(--primary);
-        transform: translateY(-2px);
-    }
-
-    .features {
-        padding: 5rem 2rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        background: var(--light);
-    }
-
-    .feature {
-        text-align: center;
-        padding: 2rem;
-        transition: all 0.3s;
-        border: 1px solid var(--accent);
-        border-radius: 10px;
-    }
-
-    .feature:hover {
-        transform: translateY(-10px);
-        background: var(--accent);
-        color: var(--light);
-    }
-
-    .feature:hover svg {
-        fill: var(--light);
-    }
-
-    .feature:hover h3,
-    .feature:hover p {
-        color: var(--light);
-    }
-
-    .feature svg {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 1rem;
-        fill: var(--accent);
-        transition: all 0.3s;
-    }
-
-    .feature h3 {
-        margin-bottom: 1rem;
-        color: var(--primary);
-        transition: all 0.3s;
-    }
-
-    .feature p {
-        color: var(--dark);
-        line-height: 1.6;
-        transition: all 0.3s;
-    }
-
-    .gallery {
-        padding: 5rem 2rem;
-        background: var(--light);
-    }
-
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-    }
-
-    .gallery-item {
-        position: relative;
-        overflow: hidden;
-        border-radius: 10px;
-        height: 400px;
-    }
-
-    .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s;
-    }
-
-    .gallery-item:hover img {
-        transform: scale(1.1);
-    }
-
-    .gallery-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(transparent, rgba(0,0,0,0.7));
-        padding: 2rem;
-        color: white;
-        transform: translateY(100%);
-        transition: transform 0.3s;
-    }
-
-    .gallery-item:hover .gallery-overlay {
-        transform: translateY(0);
-    }
-
-    .section-title {
-        text-align: center;
-        color: var(--primary);
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-        text-align: center;
-        color: var(--dark);
-        margin-bottom: 3rem;
-    }
-
-    .experiences {
-        padding: 5rem 2rem;
-        background: var(--light);
-    }
-
-    .experiences-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    .experience-card {
-        position: relative;
-        height: 450px;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-    }
-
-    .experience-card:hover {
-        transform: translateY(-10px);
-    }
-
-    .experience-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .experience-content {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 2rem;
-        background: linear-gradient(transparent, rgba(0,0,0,0.9));
-        color: white;
-    }
-
-    .experience-content h3 {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-    }
-
-    .experience-content p {
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-    }
-
-    .experience-btn {
-        display: inline-block;
-        padding: 0.8rem 1.5rem;
-        background: var(--accent);
-        color: white;
-        text-decoration: none;
-        border-radius: 25px;
-        transition: all 0.3s;
-    }
-
-    .experience-btn:hover {
-        background: var(--primary);
-        transform: translateY(-3px);
-    }
-
-    .featured-rooms {
-        padding: 5rem 2rem;
-        background: var(--light);
-    }
-
-    .rooms-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .room-card {
-        position: relative;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-    }
-
-    .room-card:hover {
-        transform: translateY(-10px);
-    }
-
-    .room-img {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-    }
-
-    .room-content {
-        padding: 1.5rem;
-        background: white;
-    }
-
-    .room-content h3 {
-        color: var(--primary);
-        margin-bottom: 0.5rem;
-        font-size: 1.5rem;
-    }
-
-    .room-content p {
-        color: var(--dark);
-        margin-bottom: 1rem;
-        line-height: 1.6;
-    }
-
-    .room-price {
-        color: var(--accent);
-        font-weight: bold;
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-    }
-
-    .room-btn {
-        display: inline-block;
-        padding: 0.8rem 1.5rem;
-        background: var(--accent);
-        color: white;
-        text-decoration: none;
-        border-radius: 25px;
-        transition: all 0.3s;
-    }
-
-    .room-btn:hover {
-        background: var(--primary);
-        transform: translateY(-3px);
-    }
-
-    .video-section {
-        position: relative;
-        padding: 5rem 2rem;
-        background: var(--light);
-        text-align: center;
-    }
-
-    .video-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-
-    .video-wrapper {
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-        height: 0;
-        overflow: hidden;
-    }
-
-    .video-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    .sitemap-footer {
-        background: var(--primary);
-        color: var(--light);
-        padding: 4rem 2rem;
-    }
-
-    .sitemap-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 3rem;
-    }
-
-    .sitemap-column h4 {
-        color: var(--light);
-        margin-bottom: 1.5rem;
-        font-size: 1.2rem;
-    }
-
-    .sitemap-links {
-        list-style: none;
-    }
-
-    .sitemap-links li {
-        margin-bottom: 0.8rem;
-    }
-
-    .sitemap-links a {
-        color: rgba(255,255,255,0.8);
-        text-decoration: none;
-        transition: all 0.3s;
-        font-size: 0.9rem;
-    }
-
-    .sitemap-links a:hover {
-        color: var(--light);
-        padding-left: 5px;
-    }
-
-    .footer-bottom {
-        text-align: center;
-        padding: 2rem;
-        background: var(--dark);
-        color: var(--light);
-    }
-
-    .social-icons {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-
-    .social-icons a {
-        color: var(--light);
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .social-icons svg {
-        width: 24px;
-        height: 24px;
-        fill: currentColor;
-    }
-
-    .social-icons a:hover {
-        color: var(--accent);
-        transform: translateY(-3px);
-    }
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet">
-</head>
-<body>
-    <nav>
-        <a href="https://matopo.hotel" class="logo">
-            <svg viewBox="0 0 512 512" aria-hidden="true">
-                <path d="M256 32L32 128v96c0 123.78 51.29 227.73 128 288 76.71-60.27 128-164.22 128-288V128zm64 96c0 170.77-64 266.05-64 266.05S192 298.77 192 128h128z"/>
-                <path d="M256 32L480 128v96c0 123.78-51.29 227.73-128 288-76.71-60.27-128-164.22-128-288V128zm-64 96c0 170.77 64 266.05 64 266.05S320 298.77 320 128H192z"/>
-                <circle cx="256" cy="196" r="40"/>
-                <path d="M256 32l-32 80h64l-32-80z"/>
-            </svg>
-            Matopo Hotel
-        </a>
-        <div class="nav-links">
-            <a href="https://matopo.hotel/rooms">Rooms</a>
-            <a href="https://matopo.hotel/dining">Dining</a>
-            <a href="https://matopo.hotel/experiences">Experiences</a>
-            <a href="https://matopo.hotel/contact">Contact</a>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Experience Majesty</h1>
-            <p>Where luxury meets natural wonder</p>
-            <a href="https://matopo.hotel/book" class="cta-btn">Book Your Stay</a>
-        </div>
-    </section>
-
-    <section class="booking-section">
-        <div class="booking-container">
-            <form class="booking-form">
-                <select name="room-type">
-                    <option value="">Select Room Type</option>
-                    <option value="standard">Standard Room</option>
-                    <option value="deluxe">Deluxe Suite</option>
-                    <option value="executive">Executive Suite</option>
-                    <option value="presidential">Presidential Suite</option>
-                </select>
-                <input type="date" name="check-in" placeholder="Check-in Date">
-                <input type="date" name="check-out" placeholder="Check-out Date">
-                <select name="guests">
-                    <option value="">Number of Guests</option>
-                    <option value="1">1 Guest</option>
-                    <option value="2">2 Guests</option>
-                    <option value="3">3 Guests</option>
-                    <option value="4">4 Guests</option>
-                    <option value="5">5+ Guests</option>
-                </select>
-                <button type="submit">Check Availability</button>
-            </form>
-        </div>
-    </section>
-
-    <section class="featured-rooms">
-        <h2 class="section-title">Featured Rooms</h2>
-        <p class="section-subtitle">Experience luxury and comfort in our finest accommodations</p>
-        <div class="rooms-grid">
-            <div class="room-card">
-                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32" alt="Luxurious presidential suite with panoramic views and modern furnishings" class="room-img" width="600" height="300">
-                <div class="room-content">
-                    <h3>Presidential Suite</h3>
-                    <p>Expansive suite with private terrace and stunning views of Matobo Hills</p>
-                    <div class="room-price">From $500/night</div>
-                    <a href="https://matopo.hotel/rooms/presidential" class="room-btn">View Details</a>
+    
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+    
+        .section-subtitle {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 3rem;
+        }
+    
+        .experiences {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+    
+        .experiences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+    
+        .experience-card {
+            position: relative;
+            height: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+    
+        .experience-card:hover {
+            transform: translateY(-10px);
+        }
+    
+        .experience-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    
+        .experience-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+        }
+    
+        .experience-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+    
+        .experience-content p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+    
+        .experience-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+    
+        .experience-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+    
+        .featured-rooms {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+    
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    
+        .room-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+    
+        .room-card:hover {
+            transform: translateY(-10px);
+        }
+    
+        .room-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+    
+        .room-content {
+            padding: 1.5rem;
+            background: white;
+        }
+    
+        .room-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+    
+        .room-content p {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+    
+        .room-price {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+    
+        .room-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+    
+        .room-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+    
+        .video-section {
+            position: relative;
+            padding: 5rem 2rem;
+            background: var(--light);
+            text-align: center;
+        }
+    
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+    
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+    
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    
+        .sitemap-footer {
+            background: var(--primary);
+            color: var(--light);
+            padding: 4rem 2rem;
+        }
+    
+        .sitemap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+    
+        .sitemap-column h4 {
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+    
+        .sitemap-links {
+            list-style: none;
+        }
+    
+        .sitemap-links li {
+            margin-bottom: 0.8rem;
+        }
+    
+        .sitemap-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+    
+        .sitemap-links a:hover {
+            color: var(--light);
+            padding-left: 5px;
+        }
+    
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem;
+            background: var(--dark);
+            color: var(--light);
+        }
+    
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+    
+        .social-icons a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+    
+        .social-icons svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+    
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+            <a href="https://matopo.hotel" class="logo">
+                <svg viewBox="0 0 512 512" aria-hidden="true">
+                    <path d="M256 32L32 128v96c0 123.78 51.29 227.73 128 288 76.71-60.27 128-164.22 128-288V128zm64 96c0 170.77-64 266.05-64 266.05S192 298.77 192 128h128z"/>
+                    <path d="M256 32L480 128v96c0 123.78-51.29 227.73-128 288-76.71-60.27-128-164.22-128-288V128zm-64 96c0 170.77 64 266.05 64 266.05S320 298.77 320 128H192z"/>
+                    <circle cx="256" cy="196" r="40"/>
+                    <path d="M256 32l-32 80h64l-32-80z"/>
+                </svg>
+                Matopo Hotel
+            </a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="https://matopo.hotel/rooms">Rooms</a>
+                <a href="https://matopo.hotel/dining">Dining</a>
+                <a href="https://matopo.hotel/experiences">Experiences</a>
+                <a href="https://matopo.hotel/contact">Contact</a>
+            </div>
+        </nav>
+    
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Experience Majesty</h1>
+                <p>Where luxury meets natural wonder</p>
+                <a href="https://matopo.hotel/book" class="cta-btn">Book Your Stay</a>
+            </div>
+        </section>
+    
+        <section class="booking-section">
+            <div class="booking-container">
+                <form class="booking-form">
+                    <select name="room-type">
+                        <option value="">Select Room Type</option>
+                        <option value="standard">Standard Room</option>
+                        <option value="deluxe">Deluxe Suite</option>
+                        <option value="executive">Executive Suite</option>
+                        <option value="presidential">Presidential Suite</option>
+                    </select>
+                    <input type="date" name="check-in" placeholder="Check-in Date">
+                    <input type="date" name="check-out" placeholder="Check-out Date">
+                    <select name="guests">
+                        <option value="">Number of Guests</option>
+                        <option value="1">1 Guest</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4 Guests</option>
+                        <option value="5">5+ Guests</option>
+                    </select>
+                    <button type="submit">Check Availability</button>
+                </form>
+            </div>
+        </section>
+    
+        <section class="featured-rooms">
+            <h2 class="section-title">Featured Rooms</h2>
+            <p class="section-subtitle">Experience luxury and comfort in our finest accommodations</p>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32" alt="Luxurious presidential suite with panoramic views and modern furnishings" class="room-img" width="600" height="300">
+                    <div class="room-content">
+                        <h3>Presidential Suite</h3>
+                        <p>Expansive suite with private terrace and stunning views of Matobo Hills</p>
+                        <div class="room-price">From $500/night</div>
+                        <a href="https://matopo.hotel/rooms/presidential" class="room-btn">View Details</a>
+                    </div>
                 </div>
+                
+                <div class="room-card">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" alt="Elegant executive suite with separate living area and workspace" class="room-img" width="600" height="300">
+                    <div class="room-content">
+                        <h3>Executive Suite</h3>
+                        <p>Sophisticated space with premium amenities and dedicated workspace</p>
+                        <div class="room-price">From $350/night</div>
+                        <a href="https://matopo.hotel/rooms/executive" class="room-btn">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39" alt="Deluxe room with balcony and contemporary African decor" class="room-img" width="600" height="300">
+                    <div class="room-content">
+                        <h3>Deluxe Room</h3>
+                        <p>Spacious room featuring traditional African artwork and modern comforts</p>
+                        <div class="room-price">From $250/night</div>
+                        <a href="https://matopo.hotel/rooms/deluxe" class="room-btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="features">
+        </section>
+    
+        <section class="video-section">
+            <h2 class="section-title">Experience Matopo</h2>
+            <p class="section-subtitle">Take a virtual journey through our luxury resort</p>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/BjqQwo1tdfI" 
+                        title="Maleme Dam (Matobo National Park) Bulawayo - Zimbabwe 4K"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    
+        <section class="experiences">
+    
+            <h2 class="section-title">Unforgettable Experiences</h2>
+            <p class="section-subtitle">Discover extraordinary adventures in the heart of Zimbabwe</p>
+            <div class="experiences-grid">
+                <div class="experience-card">
+                    <img src="https://images.unsplash.com/photo-1522163182402-834f871fd851" alt="Expert climber ascending a dramatic granite face in morning light" class="experience-img" width="600" height="450">
+                    <div class="experience-content">
+                        <h3>Rock Climbing</h3>
+                        <p>Scale the ancient granite domes of Matobo Hills with expert guides</p>
+                        <a href="https://matopo.hotel/experiences/climbing" class="experience-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="experience-card">
+                    <img src="https://images.unsplash.com/photo-1496024840928-4c417adf211d" alt="Traditional dancers in vibrant costumes performing ceremonial dances" class="experience-img" width="600" height="450">
+                    <div class="experience-content">
+                        <h3>Cultural Immersion</h3>
+                        <p>Experience authentic Ndebele traditions and ceremonies</p>
+                        <a href="https://matopo.hotel/experiences/cultural" class="experience-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="experience-card">
+                    <img src="https://images.unsplash.com/photo-1575550959106-5a7defe28b56" alt="Luxury safari vehicle approaching a pride of lions in tall grass" class="experience-img" width="600" height="450">
+                    <div class="experience-content">
+                        <h3>Safari Adventures</h3>
+                        <p>Encounter diverse wildlife in their natural habitat</p>
+                        <a href="https://matopo.hotel/experiences/safari" class="experience-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="experience-card">
+                    <img src="https://images.unsplash.com/photo-1574360709182-47e9149fd563" alt="Ancient cave paintings showing detailed wildlife scenes, lit by natural light" class="experience-img" width="600" height="450">
+                    <div class="experience-content">
+                        <h3>Historical Tours</h3>
+                        <p>Discover ancient rock art and historical sites</p>
+                        <a href="https://matopo.hotel/experiences/history" class="experience-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+    <script>
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+    
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+    
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+    </script>
+    
+    <footer class="sitemap-footer">
+        <div class="sitemap-container">
+            <div class="sitemap-column">
+                <h4>Accommodation</h4>
+                <ul class="sitemap-links">
+                    <li><a href="https://matopo.hotel/rooms/presidential">Presidential Suite</a></li>
+                    <li><a href="https://matopo.hotel/rooms/executive">Executive Suite</a></li>
+                    <li><a href="https://matopo.hotel/rooms/deluxe">Deluxe Room</a></li>
+                    <li><a href="https://matopo.hotel/rooms/standard">Standard Room</a></li>
+                    <li><a href="https://matopo.hotel/rooms/amenities">Room Amenities</a></li>
+                </ul>
             </div>
             
-            <div class="room-card">
-                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" alt="Elegant executive suite with separate living area and workspace" class="room-img" width="600" height="300">
-                <div class="room-content">
-                    <h3>Executive Suite</h3>
-                    <p>Sophisticated space with premium amenities and dedicated workspace</p>
-                    <div class="room-price">From $350/night</div>
-                    <a href="https://matopo.hotel/rooms/executive" class="room-btn">View Details</a>
-                </div>
+            <div class="sitemap-column">
+                <h4>Experiences</h4>
+                <ul class="sitemap-links">
+                    <li><a href="https://matopo.hotel/experiences/climbing">Rock Climbing</a></li>
+                    <li><a href="https://matopo.hotel/experiences/cultural">Cultural Tours</a></li>
+                    <li><a href="https://matopo.hotel/experiences/safari">Safari Adventures</a></li>
+                    <li><a href="https://matopo.hotel/experiences/history">Historical Tours</a></li>
+                    <li><a href="https://matopo.hotel/experiences/packages">Package Deals</a></li>
+                </ul>
             </div>
             
-            <div class="room-card">
-                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39" alt="Deluxe room with balcony and contemporary African decor" class="room-img" width="600" height="300">
-                <div class="room-content">
-                    <h3>Deluxe Room</h3>
-                    <p>Spacious room featuring traditional African artwork and modern comforts</p>
-                    <div class="room-price">From $250/night</div>
-                    <a href="https://matopo.hotel/rooms/deluxe" class="room-btn">View Details</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="features">
-    </section>
-
-    <section class="video-section">
-        <h2 class="section-title">Experience Matopo</h2>
-        <p class="section-subtitle">Take a virtual journey through our luxury resort</p>
-        <div class="video-container">
-            <div class="video-wrapper">
-                <iframe 
-                    src="https://www.youtube.com/embed/BjqQwo1tdfI" 
-                    title="Maleme Dam (Matobo National Park) Bulawayo - Zimbabwe 4K"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-    </section>
-
-    <section class="experiences">
-
-        <h2 class="section-title">Unforgettable Experiences</h2>
-        <p class="section-subtitle">Discover extraordinary adventures in the heart of Zimbabwe</p>
-        <div class="experiences-grid">
-            <div class="experience-card">
-                <img src="https://images.unsplash.com/photo-1522163182402-834f871fd851" alt="Expert climber ascending a dramatic granite face in morning light" class="experience-img" width="600" height="450">
-                <div class="experience-content">
-                    <h3>Rock Climbing</h3>
-                    <p>Scale the ancient granite domes of Matobo Hills with expert guides</p>
-                    <a href="https://matopo.hotel/experiences/climbing" class="experience-btn">Learn More</a>
-                </div>
+            <div class="sitemap-column">
+                <h4>Dining</h4>
+                <ul class="sitemap-links">
+                    <li><a href="https://matopo.hotel/dining/restaurants">Restaurants</a></li>
+                    <li><a href="https://matopo.hotel/dining/bars">Bars &amp; Lounges</a></li>
+                    <li><a href="https://matopo.hotel/dining/private">Private Dining</a></li>
+                    <li><a href="https://matopo.hotel/dining/menu">Menus</a></li>
+                    <li><a href="https://matopo.hotel/dining/reservations">Reservations</a></li>
+                </ul>
             </div>
             
-            <div class="experience-card">
-                <img src="https://images.unsplash.com/photo-1496024840928-4c417adf211d" alt="Traditional dancers in vibrant costumes performing ceremonial dances" class="experience-img" width="600" height="450">
-                <div class="experience-content">
-                    <h3>Cultural Immersion</h3>
-                    <p>Experience authentic Ndebele traditions and ceremonies</p>
-                    <a href="https://matopo.hotel/experiences/cultural" class="experience-btn">Learn More</a>
+            <div class="sitemap-column">
+                <h4>About</h4>
+                <ul class="sitemap-links">
+                    <li><a href="https://matopo.hotel/about">Our Story</a></li>
+                    <li><a href="https://matopo.hotel/contact">Contact Us</a></li>
+                    <li><a href="https://matopo.hotel/location">Location</a></li>
+                    <li><a href="https://matopo.hotel/careers">Careers</a></li>
+                    <li><a href="https://matopo.hotel/press">Press</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-column">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="https://facebook.com/matopohotel" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/matopohotel" aria-label="Twitter">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/matopohotel" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/company/matopohotel" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17A1.4,1.4 0 0,1 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,5.95 7.81,5.19 6.88,5.19A1.69,1.69 0 0,0 5.19,6.88C5.19,7.81 5.95,8.56 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z"></path>
+                        </svg>
+                    </a>
                 </div>
             </div>
-            
-            <div class="experience-card">
-                <img src="https://images.unsplash.com/photo-1575550959106-5a7defe28b56" alt="Luxury safari vehicle approaching a pride of lions in tall grass" class="experience-img" width="600" height="450">
-                <div class="experience-content">
-                    <h3>Safari Adventures</h3>
-                    <p>Encounter diverse wildlife in their natural habitat</p>
-                    <a href="https://matopo.hotel/experiences/safari" class="experience-btn">Learn More</a>
-                </div>
-            </div>
-            
-            <div class="experience-card">
-                <img src="https://images.unsplash.com/photo-1574360709182-47e9149fd563" alt="Ancient cave paintings showing detailed wildlife scenes, lit by natural light" class="experience-img" width="600" height="450">
-                <div class="experience-content">
-                    <h3>Historical Tours</h3>
-                    <p>Discover ancient rock art and historical sites</p>
-                    <a href="https://matopo.hotel/experiences/history" class="experience-btn">Learn More</a>
-                </div>
-            </div>
         </div>
-    </section>
-
-<script>
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-});
-</script>
-
-<footer class="sitemap-footer">
-    <div class="sitemap-container">
-        <div class="sitemap-column">
-            <h4>Accommodation</h4>
-            <ul class="sitemap-links">
-                <li><a href="https://matopo.hotel/rooms/presidential">Presidential Suite</a></li>
-                <li><a href="https://matopo.hotel/rooms/executive">Executive Suite</a></li>
-                <li><a href="https://matopo.hotel/rooms/deluxe">Deluxe Room</a></li>
-                <li><a href="https://matopo.hotel/rooms/standard">Standard Room</a></li>
-                <li><a href="https://matopo.hotel/rooms/amenities">Room Amenities</a></li>
-            </ul>
-        </div>
-        
-        <div class="sitemap-column">
-            <h4>Experiences</h4>
-            <ul class="sitemap-links">
-                <li><a href="https://matopo.hotel/experiences/climbing">Rock Climbing</a></li>
-                <li><a href="https://matopo.hotel/experiences/cultural">Cultural Tours</a></li>
-                <li><a href="https://matopo.hotel/experiences/safari">Safari Adventures</a></li>
-                <li><a href="https://matopo.hotel/experiences/history">Historical Tours</a></li>
-                <li><a href="https://matopo.hotel/experiences/packages">Package Deals</a></li>
-            </ul>
-        </div>
-        
-        <div class="sitemap-column">
-            <h4>Dining</h4>
-            <ul class="sitemap-links">
-                <li><a href="https://matopo.hotel/dining/restaurants">Restaurants</a></li>
-                <li><a href="https://matopo.hotel/dining/bars">Bars &amp; Lounges</a></li>
-                <li><a href="https://matopo.hotel/dining/private">Private Dining</a></li>
-                <li><a href="https://matopo.hotel/dining/menu">Menus</a></li>
-                <li><a href="https://matopo.hotel/dining/reservations">Reservations</a></li>
-            </ul>
-        </div>
-        
-        <div class="sitemap-column">
-            <h4>About</h4>
-            <ul class="sitemap-links">
-                <li><a href="https://matopo.hotel/about">Our Story</a></li>
-                <li><a href="https://matopo.hotel/contact">Contact Us</a></li>
-                <li><a href="https://matopo.hotel/location">Location</a></li>
-                <li><a href="https://matopo.hotel/careers">Careers</a></li>
-                <li><a href="https://matopo.hotel/press">Press</a></li>
-            </ul>
-        </div>
-        <div class="sitemap-column">
-            <h4>Connect With Us</h4>
-            <div class="social-icons">
-                <a href="https://facebook.com/matopohotel" aria-label="Facebook">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"></path>
-                    </svg>
-                </a>
-                <a href="https://twitter.com/matopohotel" aria-label="Twitter">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z"></path>
-                    </svg>
-                </a>
-                <a href="https://instagram.com/matopohotel" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"></path>
-                    </svg>
-                </a>
-                <a href="https://linkedin.com/company/matopohotel" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17A1.4,1.4 0 0,1 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,5.95 7.81,5.19 6.88,5.19A1.69,1.69 0 0,0 5.19,6.88C5.19,7.81 5.95,8.56 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
+    </footer>
+    <div class="footer-bottom">
+        <p>© 2024 Matopo Hotel. All rights reserved.</p>
     </div>
-</footer>
-<div class="footer-bottom">
-    <p>© 2024 Matopo Hotel. All rights reserved.</p>
-</div>
-
-
-</body></html>
+    
+    
+    </body></html>
