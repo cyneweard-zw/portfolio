@@ -9,6 +9,10 @@
     --accent: #4a90e2;
     --shadow-light: 8px 8px 15px #a3b1c6, -8px -8px 15px #ffffff;
     --shadow-inset: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-bg-dark: rgba(26, 26, 26, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-border-dark: rgba(255, 255, 255, 0.05);
     
     /* Dark theme variables */
     --primary-dark: #1a1a1a;
@@ -34,8 +38,42 @@
 }
 
 body {
-    background-color: var(--primary);
+    background: linear-gradient(45deg, #e0e5ec, #f0f5fc);
     color: var(--secondary);
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        rgba(224, 229, 236, 0.8),
+        rgba(240, 245, 252, 0.8),
+        rgba(224, 229, 236, 0.8),
+        rgba(240, 245, 252, 0.8)
+    );
+    animation: gradientMove 15s ease infinite;
+    z-index: -1;
+}
+
+[data-theme="dark"] body {
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+}
+
+[data-theme="dark"] body::before {
+    background: linear-gradient(
+        45deg,
+        rgba(26, 26, 26, 0.8),
+        rgba(45, 45, 45, 0.8),
+        rgba(26, 26, 26, 0.8),
+        rgba(45, 45, 45, 0.8)
+    );
 }
 
 .navbar {
@@ -78,8 +116,10 @@ body {
 }
 
 .navbar a:hover {
-    box-shadow: var(--shadow-inset);
+    box-shadow: 0 0 10px var(--accent),
+                0 0 20px rgba(74, 144, 226, 0.3);
     color: var(--accent);
+    text-shadow: 0 0 5px var(--accent);
     background: rgba(255, 255, 255, 0.2);
 }
 
@@ -142,13 +182,21 @@ body {
 }
 
 .skill-tag {
-    background: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
     padding: 0.8rem 1.5rem;
     border-radius: 15px;
     font-size: 0.9rem;
     color: var(--secondary);
-    box-shadow: var(--shadow-light);
     margin: 0.5rem;
+}
+
+[data-theme="dark"] .skill-tag {
+    background: rgba(26, 26, 26, 0.1);
+    border-color: rgba(255, 255, 255, 0.05);
 }
 
 .projects {
@@ -171,15 +219,39 @@ body {
 }
 
 .project-card {
-    background: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: var(--shadow-light);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
     transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .project-card {
+    background: rgba(26, 26, 26, 0.1);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
 .project-card:hover {
     transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px var(--accent), 
+                0 0 30px rgba(74, 144, 226, 0.3);
+    border-color: var(--accent);
+}
+
+[data-theme="dark"] .project-card:hover,
+[data-theme="dark"] .navbar a:hover,
+[data-theme="dark"] .see-more-btn:hover,
+[data-theme="dark"] .social-links a:hover,
+[data-theme="dark"] .theme-toggle:hover {
+    box-shadow: 0 0 15px var(--accent-dark),
+                0 0 30px rgba(100, 181, 246, 0.3);
+    border-color: var(--accent-dark);
+    background: rgba(26, 26, 26, 0.15);
 }
 
 .project-card:first-child {
@@ -199,6 +271,41 @@ body {
     grid-column: span 1;
 }
 
+.see-more-btn {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    color: var(--accent);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .see-more-btn {
+    background: rgba(26, 26, 26, 0.1);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.see-more-btn:hover {
+    box-shadow: 0 0 15px var(--accent),
+                0 0 30px rgba(74, 144, 226, 0.3);
+    color: var(--accent);
+    text-shadow: 0 0 5px var(--accent);
+    border-color: var(--accent);
+    transform: scale(0.98);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .see-more-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 .project-tags {
     display: flex;
     gap: 0.5rem;
@@ -207,12 +314,20 @@ body {
 }
 
 .project-tag {
-    background: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0.5rem 1rem;
     border-radius: 10px;
     font-size: 0.8rem;
-    box-shadow: var(--shadow-inset);
     color: var(--accent);
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .project-tag {
+    background: rgba(26, 26, 26, 0.1);
+    border-color: rgba(255, 255, 255, 0.05);
 }
 
 .prototype-preview {
@@ -220,8 +335,17 @@ body {
     padding: 1.5rem;
     border-radius: 15px;
     box-shadow: var(--shadow-inset);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     font-family: monospace;
     color: var(--accent);
+}
+
+[data-theme="dark"] .prototype-preview {
+    background: rgba(26, 26, 26, 0.1);
+    border-color: rgba(255, 255, 255, 0.05);
 }
 
 .contact {
@@ -240,26 +364,39 @@ body {
     display: inline-block;
     padding: 1rem;
     border-radius: 50%;
-    box-shadow: var(--shadow-light);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
     color: var(--secondary);
     margin: 0 1rem;
     transition: all 0.3s ease;
 }
 
+[data-theme="dark"] .social-links a {
+    background: rgba(26, 26, 26, 0.1);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
 .social-links a:hover {
-    box-shadow: var(--shadow-inset);
+    box-shadow: 0 0 15px var(--accent),
+                0 0 30px rgba(74, 144, 226, 0.3);
     color: var(--accent);
+    text-shadow: 0 0 5px var(--accent);
+    border-color: var(--accent);
 }
 
 .theme-toggle {
-    background: none;
-    border: none;
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
     color: var(--secondary);
     cursor: pointer;
     padding: 0.5rem 1rem;
     border-radius: 25px;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -267,7 +404,8 @@ body {
 }
 
 [data-theme="dark"] .theme-toggle {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-bg-dark);
+    border-color: var(--glass-border-dark);
 }
 
 .theme-toggle i {
@@ -276,8 +414,11 @@ body {
 }
 
 .theme-toggle:hover {
-    box-shadow: var(--shadow-inset);
+    box-shadow: 0 0 15px var(--accent),
+                0 0 30px rgba(74, 144, 226, 0.3);
     color: var(--accent);
+    text-shadow: 0 0 5px var(--accent);
+    border-color: var(--accent);
     background: rgba(255, 255, 255, 0.2);
 }
 
@@ -288,6 +429,18 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientMove {
+    0% {
+        transform: translate(0%, 0%) rotate(0deg);
+    }
+    50% {
+        transform: translate(-25%, -25%) rotate(180deg);
+    }
+    100% {
+        transform: translate(0%, 0%) rotate(360deg);
+    }
 }
 
 .fade-in {
@@ -390,28 +543,28 @@ body {
 </section>
 
 <section id="projects" class="projects">
-    <h2>Featured Design Concepts</h2>
+    <h2>Featured Projects</h2>
     <div class="project-grid">
         <div class="project-card featured fade-in">
     <h3>Hotel Landing Page Concept</h3>
-    <div style="width: 100%; height: 300px; margin: 1rem 0; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-inset); cursor: pointer;" onclick="window.open('http://127.0.0.1:5500/showcase/Xc3gt6z3nhGcnvh8m.html', '_blank')">
+    <div style="width: 100%; height: 300px; margin: 1rem 0; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-inset); cursor: pointer;" onclick="window.open('https://example-hotel.com', '_blank')">
     <img src="assets\Screenshot_31-10-2024_141355_127.0.0.1.jpeg" alt="Luxury hotel website mockup showing a hero section with a grand hotel exterior, minimalist navigation, and a prominent booking widget" style="width: 100%; height: 100%; object-fit: cover;" width="600" height="300">
 </div>
     <div class="prototype-preview">
         Key Achievements:<br>
-        • Intuitive Room Booking Flow<br>
-        • Virtual Tour Integration<br>
-        • Real-time Availability Calendar
+        • Intuitive Website Flow<br>
+        • Video Integration<br>
+        • Animation
     </div>
     <div class="project-tags">
         <span class="project-tag">Hospitality</span>
         <span class="project-tag">UX Design</span>
         <span class="project-tag">Interactive Prototype</span>
-        <span class="project-tag">Booking System</span>
+        <span class="project-tag">Booking</span>
     </div>
 </div>
         <div class="project-card fade-in">
-    <h3>Space Agency Brand Identity</h3>
+    <h3>Space Agency Landing Page Concept </h3>
     <div style="width: 100%; height: 200px; margin: 1rem 0; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-inset); cursor: pointer;" onclick="window.open('https://example-space-agency.com', '_blank')">
         <img src="assets\Screenshot_31-10-2024_14213_127.0.0.1.jpeg" alt="Space agency branding mockup showing logo variations, color palette, and futuristic interface designs" style="width: 100%; height: 100%; object-fit: cover;" width="400" height="200">
 </div>
@@ -419,7 +572,7 @@ body {
         Deliverables:<br>
         • Logo System &amp; Visual Language<br>
         • Digital Platform Design<br>
-        • Mission Control Interface Concept
+        • User Interface Concept
     </div>
     <div class="project-tags">
         <span class="project-tag">Branding</span>
@@ -435,21 +588,7 @@ body {
         <span class="project-tag">Mobile Design</span>
         <span class="project-tag">Prototyping</span>
     </div>
-    <button class="see-more-btn" style="
-    margin-top: 1.5rem;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    background: var(--primary);
-    color: var(--accent);
-    border-radius: 12px;
-    box-shadow: var(--shadow-light);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    width: 100%;
-" onmouseover="this.style.boxShadow='var(--shadow-inset)'; this.style.transform='scale(0.98)'" onmouseout="this.style.boxShadow='var(--shadow-light)'; this.style.transform='scale(1)'">
-    See More Details
-</button>
+    <button class="see-more-btn">See More Details</button>
 </div>
         <div class="project-card fade-in">
     <h3>Dashboard UI</h3>
@@ -458,38 +597,31 @@ body {
         <span class="project-tag">Data Viz</span>
         <span class="project-tag">UI Design</span>
     </div>
-    <button class="see-more-btn" style="
-    margin-top: 1.5rem;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    background: var(--primary);
-    color: var(--accent);
-    border-radius: 12px;
-    box-shadow: var(--shadow-light);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    width: 100%;
-" onmouseover="this.style.boxShadow='var(--shadow-inset)'; this.style.transform='scale(0.98)'" onmouseout="this.style.boxShadow='var(--shadow-light)'; this.style.transform='scale(1)'">
-    View Project Details
-</button>
+    <button class="see-more-btn">View Project Details</button>
 </div>
     </div>
 
 <div style="text-align: center; margin-top: 3rem;">
     <button class="view-more-btn" style="
-        padding: 1rem 2rem;
-        background: var(--primary);
-        border: none;
-        border-radius: 15px;
+    padding: 1rem 2rem;
+    color: var(--accent);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Adding hover effects */
+    &amp;:hover {
+        transform: translateY(-2px);
         box-shadow: var(--shadow-light);
-        color: var(--accent);
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    " onmouseover="this.style.boxShadow='var(--shadow-inset)'; this.style.transform='scale(0.98)'" onmouseout="this.style.boxShadow='var(--shadow-light)'; this.style.transform='scale(1)'">
-        View More Projects <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>
-    </button>
+        background: rgba(255, 255, 255, 0.2);
+    }
+">
+    View More Projects <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>
+</button>
 </div>
 </section>
 
