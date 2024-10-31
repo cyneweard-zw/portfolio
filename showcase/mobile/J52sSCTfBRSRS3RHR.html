@@ -1,0 +1,513 @@
+<html><head><base href=".">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Modern Streaming App</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: #000;
+    color: #fff;
+}
+
+.app {
+    max-width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.content {
+    padding: 4rem 1rem 5rem 1rem;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.featured {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.cards {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+.card {
+    flex: 0 0 auto;
+    width: 200px;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    position: relative;
+    background: #1a1a1a;
+    transition: transform 0.3s ease;
+}
+
+.card:active {
+    transform: scale(0.98);
+}
+
+.card-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-img img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 0.8rem;
+}
+
+.card-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.card-subtitle {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.nav-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(18, 18, 18, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #333;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.nav-item.active {
+    color: #fff;
+}
+
+.nav-icon {
+    margin-bottom: 0.3rem;
+    font-size: 1.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.3s; }
+
+/* Custom Scrollbar Styles */
+.cards::-webkit-scrollbar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+}
+
+.cards::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.cards::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cards::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.content::-webkit-scrollbar {
+    width: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.03);
+}
+
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+.video-container {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16/9;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0.5rem;
+}
+</style>
+</head>
+<body>
+<div class="app">
+    <header class="header">
+        <div class="logo">StreamFlex</div>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+    </header>
+    
+    <main class="content">
+        <section class="featured">
+            <h2 class="section-title">Featured</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" alt="Never Gonna Give You Up thumbnail">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Never Gonna Give You Up</h3>
+                        <p class="card-subtitle">Rick Astley</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://img.youtube.com/vi/jNQXAC9IVRw/mqdefault.jpg" alt="Me at the zoo thumbnail">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Me at the zoo</h3>
+                        <p class="card-subtitle">First YouTube Video</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://img.youtube.com/vi/QH2-TGUlwu4/mqdefault.jpg" alt="Nyan Cat thumbnail">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Nyan Cat</h3>
+                        <p class="card-subtitle">Internet Classic</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Continue Watching</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://img.youtube.com/vi/C0DPdy98e4c/mqdefault.jpg" alt="The Duck Song thumbnail">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">The Duck Song</h3>
+                        <p class="card-subtitle">Animated Music</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://img.youtube.com/vi/RgKAFK5djSk/mqdefault.jpg" alt="See You Again thumbnail">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">See You Again</h3>
+                        <p class="card-subtitle">Wiz Khalifa ft. Charlie Puth</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Recommended for You</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://img.youtube.com/vi/kJQP7kiw5Fk/mqdefault.jpg" alt="Despacito thumbnail">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Despacito</h3>
+                        <p class="card-subtitle">Luis Fonsi ft. Daddy Yankee</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="nav-bar">
+    <div class="nav-item active">
+        <div class="nav-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            </svg>
+        </div>
+        Home
+    </div>
+    <div class="nav-item">
+        <div class="nav-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </div>
+        Search
+    </div>
+    <div class="nav-item">
+        <div class="nav-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+        </div>
+        Library
+    </div>
+    <div class="nav-item">
+        <div class="nav-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+        </div>
+        Profile
+    </div>
+</nav>
+</div>
+
+<div class="video-modal">
+    <button class="close-button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+    <iframe id="video-iframe" 
+            width="100%" 
+            height="100%" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+    </iframe>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Add smooth scrolling to cards
+    const cardContainers = document.querySelectorAll('.cards');
+    cardContainers.forEach(container => {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        container.addEventListener('mousedown', (e) => {
+            isDown = true;
+            container.style.cursor = 'grabbing';
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            isDown = false;
+            container.style.cursor = 'grab';
+        });
+
+        container.addEventListener('mouseup', () => {
+            isDown = false;
+            container.style.cursor = 'grab';
+        });
+
+        container.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 2;
+            container.scrollLeft = scrollLeft - walk;
+        });
+    });
+
+    // Video handling
+    const videoModal = document.querySelector('.video-modal');
+    const closeButton = document.querySelector('.close-button');
+    const videoIframe = document.querySelector('#video-iframe');
+    const cards = document.querySelectorAll('.card');
+
+    // Replace the simple videoIds array with more complete video data
+    const videoData = [
+        {
+            id: 'dQw4w9WgXcQ',
+            title: 'Never Gonna Give You Up',
+            subtitle: 'Rick Astley',
+            thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg'
+        },
+        {
+            id: 'jNQXAC9IVRw', 
+            title: 'Me at the zoo',
+            subtitle: 'First YouTube Video',
+            thumbnail: 'https://img.youtube.com/vi/jNQXAC9IVRw/mqdefault.jpg'
+        },
+        {
+            id: 'QH2-TGUlwu4',
+            title: 'Nyan Cat',
+            subtitle: 'Internet Classic',
+            thumbnail: 'https://img.youtube.com/vi/QH2-TGUlwu4/mqdefault.jpg'
+        },
+        {
+            id: 'C0DPdy98e4c',
+            title: 'The Duck Song',
+            subtitle: 'Animated Music',
+            thumbnail: 'https://img.youtube.com/vi/C0DPdy98e4c/mqdefault.jpg'
+        },
+        {
+            id: 'RgKAFK5djSk',
+            title: 'See You Again',
+            subtitle: 'Wiz Khalifa ft. Charlie Puth',
+            thumbnail: 'https://img.youtube.com/vi/RgKAFK5djSk/mqdefault.jpg'
+        },
+        {
+            id: 'kJQP7kiw5Fk',
+            title: 'Despacito',
+            subtitle: 'Luis Fonsi ft. Daddy Yankee',
+            thumbnail: 'https://img.youtube.com/vi/kJQP7kiw5Fk/mqdefault.jpg'
+        }
+    ];
+
+    cards.forEach((card, index) => {
+        const videoIndex = index % videoData.length;
+        const video = videoData[videoIndex];
+
+        // Update card content
+        const cardImg = card.querySelector('.card-img');
+        const cardTitle = card.querySelector('.card-title');
+        const cardSubtitle = card.querySelector('.card-subtitle');
+
+        // Clear existing content and add thumbnail
+        cardImg.innerHTML = `<img src="${video.thumbnail}" alt="${video.title} thumbnail">`;
+        cardTitle.textContent = video.title;
+        cardSubtitle.textContent = video.subtitle;
+
+        // Update click handler
+        card.addEventListener('click', () => {
+            videoModal.classList.add('active');
+            videoIframe.src = `https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1`;
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        videoModal.classList.remove('active');
+        videoIframe.src = ''; // Clear the iframe source
+    });
+
+    // Add active state to nav items
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            navItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        });
+    });
+});
+</script>
+
+</body></html>

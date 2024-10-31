@@ -1,0 +1,567 @@
+<html><head><base href="." /><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Shop</title>
+<style>
+:root {
+  --primary: #2563eb;
+  --gray-100: #f3f4f6;
+  --gray-800: #1f2937;
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+  
+  /* Light theme (default) */
+  --bg: var(--gray-100);
+  --surface: white;
+  --text: var(--gray-800);
+  --border: #e5e7eb;
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --surface: #2d2d2d;
+  --text: #ffffff;
+  --border: #404040;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: calc(60px + var(--safe-bottom));
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  padding: 1rem;
+  padding-top: calc(1rem + var(--safe-top));
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.menu-btn {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.categories {
+  margin-top: calc(80px + var(--safe-top));
+  padding: 1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.categories::-webkit-scrollbar {
+  display: none;
+}
+
+.category {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  background: var(--surface);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--text);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.category.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.products {
+  margin-top: 1rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.product-card {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 0.75rem;
+  transition: transform 0.2s;
+  touch-action: manipulation;
+}
+
+.product-card:active {
+  transform: scale(0.98);
+}
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.product-image svg {
+  width: 100%;
+  height: 100%;
+  padding: 20%;
+  background: var(--bg);
+  border-radius: 8px;
+  color: var(--text);
+  transition: transform 0.2s;
+}
+
+.product-card:hover .product-image svg {
+  transform: scale(1.05);
+}
+
+.product-card h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.product-card p {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.add-to-cart {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  padding: 1rem;
+  padding-bottom: calc(1rem + var(--safe-bottom));
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-around;
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text);
+  font-size: 0.75rem;
+  gap: 0.25rem;
+}
+
+.nav-item.active {
+  color: var(--primary);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.added {
+  animation: bounce 0.4s;
+}
+
+@media (max-width: 360px) {
+  .products {
+    grid-template-columns: 1fr;
+  }
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 80%;
+  max-width: 300px;
+  background: var(--surface);
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  padding: calc(1rem + var(--safe-top)) 1rem 1rem 1rem;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+}
+
+.side-menu.open {
+  transform: translateX(0);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.close-menu {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.menu-item:hover {
+  background: var(--bg);
+}
+
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="menu-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 12h18M3 6h18M3 18h18"/>
+    </svg>
+  </div>
+  <h1>ModernShop</h1>
+  <div class="cart-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-7-3h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2z"/>
+    </svg>
+    <span class="cart-count">0</span>
+  </div>
+</nav>
+
+<div class="side-menu">
+  <div class="menu-header">
+    <h2>Menu</h2>
+    <div class="close-menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </div>
+  </div>
+  <div class="menu-items">
+    <a href="https://example.com/account" class="menu-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      My Account
+    </a>
+    <a href="https://example.com/orders" class="menu-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      Orders
+    </a>
+    <a href="https://example.com/wishlist" class="menu-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+      Wishlist
+    </a>
+    <div class="menu-item" id="theme-toggle">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/>
+        <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+      <span>Dark Mode</span>
+    </div>
+    <a href="https://example.com/settings" class="menu-item">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+      Settings
+    </a>
+  </div>
+</div>
+
+<div class="overlay"></div>
+
+<main class="categories" id="categories">
+  <div class="category active" data-category="all">All Products</div>
+  <div class="category" data-category="laptops">Laptops</div>
+  <div class="category" data-category="audio">Audio</div>
+  <div class="category" data-category="wearables">Wearables</div>
+  <div class="category" data-category="tablets">Tablets</div>
+  <div class="category" data-category="cameras">Cameras</div>
+  <div class="category" data-category="gaming">Gaming</div>
+</main>
+
+<main class="products" id="products"></main>
+
+<nav class="bottom-nav">
+  <div class="nav-item active">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+    </svg>
+    Home
+  </div>
+  <div class="nav-item">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/>
+      <path d="M21 21l-4.35-4.35"/>
+    </svg>
+    Search
+  </div>
+  <div class="nav-item">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+    Settings
+  </div>
+</nav>
+
+<script>
+const products = [
+  { 
+    id: 1, 
+    name: 'Modern Laptop', 
+    price: 999.99, 
+    category: 'laptops',
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="2" y="4" width="20" height="12" rx="1" />
+      <path d="M4 16h16v2a1 1 0 01-1 1H5a1 1 0 01-1-1v-2z" />
+    </svg>`
+  },
+  { 
+    id: 2, 
+    name: 'Wireless Headphones', 
+    price: 199.99, 
+    category: 'audio',
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+    </svg>`
+  },
+  { 
+    id: 3, 
+    name: 'Smart Watch', 
+    price: 299.99, 
+    category: 'wearables',
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="6" y="4" width="12" height="16" rx="3"/>
+      <path d="M9 10h6"/>
+      <path d="M9 14h6"/>
+    </svg>`
+  },
+  { 
+    id: 4, 
+    name: 'Tablet Pro', 
+    price: 799.99, 
+    category: 'tablets',
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="4" y="2" width="16" height="20" rx="2"/>
+      <line x1="12" y1="18" x2="12" y2="18.01"/>
+    </svg>`
+  },
+  { 
+    id: 5, 
+    name: 'Camera Kit', 
+    price: 1299.99, 
+    category: 'cameras',
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+      <circle cx="12" cy="13" r="4"/>
+    </svg>`
+  },
+  { 
+    id: 6, 
+    name: 'Gaming Console', 
+    price: 499.99, 
+    category: 'gaming',
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="2" y="6" width="20" height="12" rx="2"/>
+      <path d="M9 12h6"/>
+      <path d="M12 9v6"/>
+    </svg>`
+  }
+];
+
+let cart = [];
+let currentCategory = 'all';
+const productsContainer = document.getElementById('products');
+const cartCount = document.querySelector('.cart-count');
+const categories = document.getElementById('categories');
+
+function filterProducts() {
+  return currentCategory === 'all' 
+    ? products 
+    : products.filter(p => p.category === currentCategory);
+}
+
+function renderProducts() {
+  const filtered = filterProducts();
+  productsContainer.innerHTML = filtered.map(product => `
+    <div class="product-card" data-id="${product.id}">
+      <div class="product-image">
+        ${product.svg}
+      </div>
+      <h3>${product.name}</h3>
+      <p>${product.price.toFixed(2)}</p>
+      <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+    </div>
+  `).join('');
+}
+
+function addToCart(productId) {
+  cart.push(productId);
+  cartCount.textContent = cart.length;
+  cartCount.classList.add('added');
+  
+  setTimeout(() => {
+    cartCount.classList.remove('added');
+  }, 400);
+  
+  const button = document.querySelector(`[data-id="${productId}"] .add-to-cart`);
+  button.textContent = 'Added!';
+  setTimeout(() => {
+    button.textContent = 'Add to Cart';
+  }, 1000);
+}
+
+categories.addEventListener('click', (e) => {
+  if (e.target.classList.contains('category')) {
+    document.querySelector('.category.active').classList.remove('active');
+    e.target.classList.add('active');
+    currentCategory = e.target.dataset.category;
+    renderProducts();
+  }
+});
+
+// Add PWA support
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(console.error);
+}
+
+// Initialize
+renderProducts();
+
+// Prevent pull-to-refresh
+document.body.style.overscrollBehavior = 'none';
+
+const menuBtn = document.querySelector('.menu-btn');
+const closeMenu = document.querySelector('.close-menu');
+const sideMenu = document.querySelector('.side-menu');
+const overlay = document.querySelector('.overlay');
+
+menuBtn.addEventListener('click', () => {
+  sideMenu.classList.add('open');
+  overlay.classList.add('active');
+});
+
+function closeMenuHandler() {
+  sideMenu.classList.remove('open');
+  overlay.classList.remove('active');
+}
+
+closeMenu.addEventListener('click', closeMenuHandler);
+overlay.addEventListener('click', closeMenuHandler);
+
+const themeToggle = document.getElementById('theme-toggle');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+// Load saved theme or use system preference
+let currentTheme = localStorage.getItem('theme') || 
+  (prefersDark.matches ? 'dark' : 'light');
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+// Update toggle text
+function updateToggleText() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  themeToggle.querySelector('span').textContent = isDark ? 'Light Mode' : 'Dark Mode';
+}
+updateToggleText();
+
+// Handle toggle click
+themeToggle.addEventListener('click', () => {
+  currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  localStorage.setItem('theme', currentTheme);
+  updateToggleText();
+});
+
+// Handle system theme changes
+prefersDark.addEventListener('change', (e) => {
+  if (!localStorage.getItem('theme')) {
+    currentTheme = e.matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateToggleText();
+  }
+});
+</script>
+</body></html>

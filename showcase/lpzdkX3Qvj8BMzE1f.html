@@ -1,0 +1,832 @@
+<!DOCTYPE html><html><head><base href="."><title>Modern POS Dashboard</title><style>
+:root {
+  --primary: #2962ff;
+  --success: #00c853;
+  --warning: #ffd600;
+  --danger: #ff1744;
+  --dark: #1a237e;
+  --light: #f5f5f5;
+  
+  /* Light theme (default) */
+  --bg-main: #f0f2f5;
+  --bg-card: white;
+  --text-main: #333;
+  --text-muted: #666;
+  --border-color: #eee;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+  --bg-main: #121212;
+  --bg-card: #1e1e1e;
+  --text-main: #ffffff;
+  --text-muted: #aaa;
+  --border-color: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--dark);
+  color: white;
+  padding: 1.5rem;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.main-content {
+  padding: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-title {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+.chart-container {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+}
+
+.recent-orders {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+}
+
+.status.completed {
+  background: var(--success);
+  color: white;
+}
+
+.status.pending {
+  background: var(--warning);
+  color: black;
+}
+
+/* Add tab styles */
+.tab-container {
+  margin-bottom: 1.5rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tab.active {
+  background: var(--primary);
+  color: white;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.profit-loss-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pl-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.profit {
+  color: var(--success);
+}
+
+.loss {
+  color: var(--danger);
+}
+
+.pos-container {
+  background: var(--bg-card);
+  color: var(--text-main);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pos-grid {
+  display: grid;
+  grid-template-columns: 1fr 250px;
+  gap: 1.5rem;
+}
+
+.pos-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-categories {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.category {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+.category.active {
+  background: var(--primary);
+  color: white;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+.pos-cart {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1rem;
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+.cart-header {
+  font-weight: bold;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="dashboard">
+  <div class="sidebar">
+  <div class="logo">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="3" width="20" height="18" rx="2"></rect>
+      <line x="2" y="8" x2="22" y2="8"></line>
+      <line x="6" y="12" x2="6" y2="16"></line>
+    </svg>
+    POS System
+  </div>
+  <div class="theme-toggle">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <span>Toggle Theme</span>
+  </div>
+  <nav>
+    <div class="nav-item" data-tab="dashboard">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      Dashboard
+    </div>
+    <div class="nav-item" data-tab="orders">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+        <path d="M9 12h6"></path>
+        <path d="M9 16h6"></path>
+      </svg>
+      Orders
+    </div>
+    <div class="nav-item" data-tab="customers">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      Customers
+    </div>
+    <div class="nav-item" data-tab="inventory">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="3" width="20" height="18" rx="2"></rect>
+        <line x1="2" y1="8" x2="22" y2="8"></line>
+        <line x1="2" y1="13" x2="22" y2="13"></line>
+        <line x1="2" y1="18" x2="22" y2="18"></line>
+      </svg>
+      Inventory
+    </div>
+    <div class="nav-item" data-tab="pos">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="3" width="20" height="18" rx="2"></rect>
+        <line x1="6" y1="8" x2="18" y2="8"></line>
+        <line x1="6" y1="13" x2="18" y2="13"></line>
+      </svg>
+      POS
+    </div>
+  </nav>
+</div>
+  
+  <div class="main-content">
+    <div class="tab-container">
+      <div class="tabs">
+        <div class="tab active" data-tab="dashboard">Dashboard</div>
+        <div class="tab" data-tab="orders">Orders</div>
+        <div class="tab" data-tab="profit-loss">Profit &amp; Loss</div>
+        <div class="tab" data-tab="inventory">Inventory</div>
+        <div class="tab" data-tab="customers">Customers</div>
+        <div class="tab" data-tab="pos">POS</div>
+      </div>
+    </div>
+
+    <div class="tab-content active" id="dashboard">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-title">Today's Sales</div>
+          <div class="stat-value">$2,584.50</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Orders Today</div>
+          <div class="stat-value">47</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Average Order Value</div>
+          <div class="stat-value">$55.20</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Active Tables</div>
+          <div class="stat-value">8</div>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <canvas id="salesChart"></canvas>
+      </div>
+
+      <div class="recent-orders">
+        <h2>Recent Orders</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Time</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#1234</td>
+              <td>10:45 AM</td>
+              <td>$45.80</td>
+              <td><span class="status completed">Completed</span></td>
+            </tr>
+            <tr>
+              <td>#1233</td>
+              <td>10:40 AM</td>
+              <td>$28.50</td>
+              <td><span class="status pending">Pending</span></td>
+            </tr>
+            <tr>
+              <td>#1232</td>
+              <td>10:35 AM</td>
+              <td>$36.20</td>
+              <td><span class="status completed">Completed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-content" id="orders">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-title">Total Orders</div>
+          <div class="stat-value">156</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Pending Orders</div>
+          <div class="stat-value">8</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Average Time</div>
+          <div class="stat-value">12m</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Completed Today</div>
+          <div class="stat-value">47</div>
+        </div>
+      </div>
+
+      <div class="recent-orders">
+        <h2>Today's Orders</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#1234</td>
+              <td>3 items</td>
+              <td>$45.80</td>
+              <td><span class="status completed">Completed</span></td>
+            </tr>
+            <tr>
+              <td>#1233</td>
+              <td>2 items</td>
+              <td>$28.50</td>
+              <td><span class="status pending">Pending</span></td>
+            </tr>
+            <tr>
+              <td>#1232</td>
+              <td>4 items</td>
+              <td>$36.20</td>
+              <td><span class="status completed">Completed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-content" id="profit-loss">
+      <div class="profit-loss-grid">
+        <div class="pl-card" style="background: var(--bg-card); color: var(--text-main);">
+          <div class="stat-title">Total Revenue</div>
+          <div class="stat-value">$25,845.50</div>
+        </div>
+        <div class="pl-card" style="background: var(--bg-card); color: var(--text-main);">
+          <div class="stat-title">Total Expenses</div>
+          <div class="stat-value">$18,234.20</div>
+        </div>
+        <div class="pl-card" style="background: var(--bg-card); color: var(--text-main);">
+          <div class="stat-title">Net Profit</div>
+          <div class="stat-value profit">+$7,611.30</div>
+        </div>
+        <div class="pl-card" style="background: var(--bg-card); color: var(--text-main);">
+          <div class="stat-title">Profit Margin</div>
+          <div class="stat-value">29.45%</div>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <canvas id="profitLossChart"></canvas>
+      </div>
+
+      <div class="recent-orders">
+        <h2>Expense Breakdown</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>This Month</th>
+              <th>Last Month</th>
+              <th>Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Inventory</td>
+              <td>$12,450.00</td>
+              <td>$11,890.00</td>
+              <td class="loss">+4.7%</td>
+            </tr>
+            <tr>
+              <td>Labor</td>
+              <td>$4,230.00</td>
+              <td>$4,230.00</td>
+              <td>0%</td>
+            </tr>
+            <tr>
+              <td>Utilities</td>
+              <td>$1,554.20</td>
+              <td>$1,680.00</td>
+              <td class="profit">-7.5%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-content" id="inventory">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-title">Total Items</div>
+          <div class="stat-value">1,247</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Low Stock Items</div>
+          <div class="stat-value">23</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Out of Stock</div>
+          <div class="stat-value">5</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Inventory Value</div>
+          <div class="stat-value">$45,234</div>
+        </div>
+      </div>
+
+      <div class="recent-orders">
+        <h2>Inventory Items</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Item Name</th>
+              <th>Category</th>
+              <th>Stock Level</th>
+              <th>Unit Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Coffee Beans - Arabica</td>
+              <td>Beverages</td>
+              <td>124 units</td>
+              <td>$15.00</td>
+            </tr>
+            <tr>
+              <td>Paper Cups 12oz</td>
+              <td>Supplies</td>
+              <td>850 units</td>
+              <td>$0.15</td>
+            </tr>
+            <tr>
+              <td>Chocolate Syrup</td>
+              <td>Toppings</td>
+              <td>12 units</td>
+              <td>$8.50</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-content" id="customers">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-title">Total Customers</div>
+          <div class="stat-value">2,847</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">New Today</div>
+          <div class="stat-value">12</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Average Spend</div>
+          <div class="stat-value">$42.30</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Loyalty Members</div>
+          <div class="stat-value">1,456</div>
+        </div>
+      </div>
+
+      <div class="recent-orders">
+        <h2>Recent Customers</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Last Visit</th>
+              <th>Total Visits</th>
+              <th>Total Spent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sarah Johnson</td>
+              <td>Today 10:45 AM</td>
+              <td>24</td>
+              <td>$458.20</td>
+            </tr>
+            <tr>
+              <td>Mike Stevens</td>
+              <td>Today 9:30 AM</td>
+              <td>15</td>
+              <td>$285.50</td>
+            </tr>
+            <tr>
+              <td>Emma Wilson</td>
+              <td>Yesterday 4:15 PM</td>
+              <td>32</td>
+              <td>$762.40</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-content" id="pos">
+      <div class="pos-container">
+        <div class="pos-grid">
+          <div class="pos-menu">
+            <div class="menu-categories">
+              <button class="category active">All</button>
+              <button class="category">Food</button>
+              <button class="category">Drinks</button>
+              <button class="category">Desserts</button>
+            </div>
+            <div class="menu-items">
+              <div class="menu-item">
+                <div class="item-name">Burger</div>
+                <div class="item-price">$12.99</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-name">Pizza</div>
+                <div class="item-price">$15.99</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-name">Coffee</div>
+                <div class="item-price">$4.99</div>
+              </div>
+              <div class="menu-item">
+                <div class="item-name">Fries</div>
+                <div class="item-price">$5.99</div>
+              </div>
+            </div>
+          </div>
+          <div class="pos-cart">
+            <div class="cart-header">Cart</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ctx = document.getElementById('salesChart').getContext('2d');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM'],
+        datasets: [{
+            label: 'Sales ($)',
+            data: [250, 450, 680, 1100, 890, 750, 680, 824],
+            borderColor: '#2962ff',
+            tension: 0.4,
+            fill: true,
+            backgroundColor: 'rgba(41, 98, 255, 0.1)'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        animation: {
+            duration: 0
+        }
+    }
+});
+
+// Update nav item click handler for tab switching
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+        // Highlight nav item
+        document.querySelectorAll('.nav-item').forEach(i => i.style.background = 'transparent');
+        item.style.background = 'rgba(255,255,255,0.1)';
+        
+        // Switch tabs
+        const tabId = item.dataset.tab;
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        // Find and activate corresponding tab if it exists
+        const tab = document.querySelector(`.tab[data-tab="${tabId}"]`);
+        if (tab) tab.classList.add('active');
+        
+        // Activate content
+        document.getElementById(tabId).classList.add('active');
+    });
+});
+
+// Tab functionality
+document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+});
+
+// Profit & Loss Chart
+const plCtx = document.getElementById('profitLossChart').getContext('2d');
+new Chart(plCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+            label: 'Revenue',
+            data: [22000, 24000, 21000, 23000, 24500, 25845],
+            backgroundColor: 'rgba(41, 98, 255, 0.5)',
+            borderColor: 'rgba(41, 98, 255, 1)',
+            borderWidth: 1
+        },
+        {
+            label: 'Expenses',
+            data: [18000, 17500, 16800, 17200, 18100, 18234],
+            backgroundColor: 'rgba(255, 23, 68, 0.5)',
+            borderColor: 'rgba(255, 23, 68, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+// Theme handling
+const themeToggle = document.querySelector('.theme-toggle');
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+// Check for saved theme preference or default to system preference
+const getCurrentTheme = () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    return savedTheme;
+  }
+  return prefersDarkScheme.matches ? 'dark' : 'light';
+};
+
+// Apply theme
+const setTheme = (theme) => {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+};
+
+// Initialize theme
+setTheme(getCurrentTheme());
+
+// Handle theme toggle click
+themeToggle.addEventListener('click', () => {
+  const currentTheme = getCurrentTheme();
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  setTheme(newTheme);
+});
+
+// Listen for system theme changes
+prefersDarkScheme.addListener((e) => {
+  if (!localStorage.getItem('theme')) {
+    setTheme(e.matches ? 'dark' : 'light');
+  }
+});
+</script>
+</body></html>
