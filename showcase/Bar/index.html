@@ -1,0 +1,1076 @@
+<html><head><base href="/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Drinks - Mobile Bartending</title>
+<style>
+:root {
+  --primary: #000000;
+  --accent: #D4AF37;
+  --light: #ffffff;
+  --bg: #ffffff;
+  --text: #000000;
+  --card-bg: #ffffff;
+  --footer-bg: #000000;
+}
+
+[data-theme="dark"] {
+  --bg: #121212;
+  --text: #ffffff;
+  --card-bg: #1E1E1E;
+  --footer-bg: #1E1E1E;
+  --service-text: #ffffff;
+  --section-bg: #1A1A1A;
+  --input-bg: #2D2D2D;
+  --input-text: #ffffff;
+  --input-border: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+.navbar {
+  background-color: transparent;
+  padding: 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: var(--light);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  color: var(--light);
+  font-size: 1.2rem;
+  text-decoration: none;
+  letter-spacing: 2px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.logo:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.logo:hover {
+  color: var(--accent);
+}
+
+.logo:hover:after {
+  width: 100%;
+}
+
+.navbar.scrolled .logo {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-links a {
+  color: var(--light);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-links a:hover:after {
+  width: 100%;
+}
+
+.navbar.scrolled .nav-links a {
+  color: var(--primary);
+}
+
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3')
+              center/cover fixed; /* Added 'fixed' for basic parallax */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--light);
+  text-align: center;
+  position: relative; /* Added for advanced parallax */
+  overflow: hidden; /* Added for advanced parallax */
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%; /* Larger than container for parallax movement */
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3')
+              center/cover no-repeat;
+  transform: translateY(0);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
+.cta-button {
+  background-color: transparent;
+  color: var(--light);
+  padding: 1rem 2rem;
+  border: 1px solid var(--light);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--light);
+  color: var(--primary);
+}
+
+.section {
+  padding: 8rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+[data-theme="dark"] .section {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 4rem;
+  margin-top: 4rem;
+}
+
+.service-card {
+  text-align: center;
+  background-color: transparent;
+}
+
+[data-theme="dark"] .service-card {
+  background-color: transparent;
+}
+
+.service-card h3 {
+  margin: 1rem 0;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.service-card p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+[data-theme="dark"] .service-card p {
+  color: var(--text);
+  opacity: 0.8;
+}
+
+.about-section {
+  background-color: #f9f9f9;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .about-section {
+  background-color: var(--section-bg);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+  color: var(--primary);
+}
+
+[data-theme="dark"] .about-text h2 {
+  color: var(--text);
+}
+
+.about-text p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+[data-theme="dark"] .about-text p {
+  color: var(--text);
+  opacity: 0.8;
+}
+
+.about-image {
+  position: relative;
+  height: 500px;
+}
+
+.about-image::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: -20px;
+  bottom: -20px;
+  border: 1px solid var(--accent);
+}
+
+[data-theme="dark"] .about-image::before {
+  border-color: var(--accent);
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.video-section {
+  background-color: var(--light);
+  text-align: center;
+  padding: 8rem 2rem;
+}
+
+[data-theme="dark"] .video-section {
+  background-color: var(--bg);
+}
+
+.video-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-title {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin-bottom: 3rem;
+  color: var(--primary);
+}
+
+[data-theme="dark"] .video-title {
+  color: var(--text);
+}
+
+.cocktails-section {
+  background-color: #f9f9f9;
+  padding: 8rem 2rem;
+}
+
+[data-theme="dark"] .cocktails-section {
+  background-color: var(--section-bg);
+}
+
+.cocktails-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.cocktail-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  position: relative; /* Added for border animation */
+}
+
+[data-theme="dark"] .cocktail-card {
+  background-color: var(--card-bg);
+  color: var(--text);
+}
+
+.cocktail-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--accent);
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: scale(1.1);
+}
+
+.cocktail-card:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cocktail-card:hover {
+  transform: translateY(-5px);
+}
+
+.cocktail-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+}
+
+.cocktail-name {
+  color: var(--primary);
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .cocktail-name {
+  color: var(--text);
+}
+
+.cocktail-description {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .cocktail-description {
+  color: var(--text);
+  opacity: 0.8;
+}
+
+.featured-tag {
+  display: inline-block;
+  background-color: var(--accent);
+  color: var(--primary);
+  padding: 0.3rem 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-image {
+    height: 300px;
+    margin-top: 2rem;
+  }
+  
+  .cocktails-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.booking-section {
+  background-color: #f9f9f9;
+  padding: 8rem 2rem;
+}
+
+[data-theme="dark"] .booking-section {
+  background-color: var(--section-bg);
+}
+
+.booking-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.booking-title {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin-bottom: 3rem;
+  color: var(--primary);
+}
+
+[data-theme="dark"] .booking-title {
+  color: var(--text);
+}
+
+.booking-form {
+  display: grid;
+  gap: 2rem;
+  background: var(--card-bg);
+  padding: 3rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] .booking-form {
+  background-color: var(--card-bg);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: var(--primary);
+}
+
+[data-theme="dark"] .form-group label {
+  color: var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+  background-color: var(--input-bg);
+  border-color: var(--input-border);
+  color: var(--input-text);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-btn {
+  background-color: var(--primary);
+  color: var(--light);
+  padding: 1rem 2rem;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .booking-form {
+    padding: 2rem;
+  }
+}
+
+.form-group input::placeholder {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+[data-theme="dark"] .form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.booking-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab-button {
+  padding: 1rem 2rem;
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .tab-button {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.tab-button.active {
+  background: var(--primary);
+  color: var(--light);
+}
+
+[data-theme="dark"] .tab-button.active {
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.footer {
+  background-color: var(--footer-bg);
+  color: var(--light);
+  padding: 4rem 2rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+.footer-section h3 {
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: var(--light);
+  text-decoration: none;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.social-icons a {
+  color: var(--light);
+  font-size: 1.5rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+.theme-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--light);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  background: var(--accent);
+}
+
+.map-section {
+  width: 100%;
+  background-color: var(--bg);
+  padding: 4rem 0;
+}
+
+[data-theme="dark"] .map-section {
+  background-color: var(--section-bg);
+}
+
+.map-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.map-container iframe {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] .map-container iframe {
+  filter: invert(90%) hue-rotate(180deg);
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-content">
+    <a href="/" class="logo">HAPPY DRINKS</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-background"></div>
+  <div class="hero-content">
+    <h1>CRAFTED COCKTAILS</h1>
+    <p>Mobile bar service for exceptional events</p>
+    <a href="https://calendly.com" class="cta-button">BOOK NOW</a>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>PRIVATE PARTIES</h3>
+      <p>Elevate your private gatherings with professional bartending services and custom cocktail menus</p>
+    </div>
+    <div class="service-card">
+      <h3>WEDDINGS</h3>
+      <p>Create unforgettable moments with sophisticated drink selections for your special day</p>
+    </div>
+    <div class="service-card">
+      <h3>CORPORATE EVENTS</h3>
+      <p>Impress clients and colleagues with premium mobile bar services for any business occasion</p>
+    </div>
+  </div>
+</section>
+
+<section class="cocktails-section">
+  <div class="cocktails-grid">
+    <div class="cocktail-card">
+      <img alt="Golden Manhattan cocktail in a classic martini glass with a cherry garnish, professional lighting, luxury setting" src="https://images.unsplash.com/photo-1536935338788-846bb9981813?ixlib=rb-4.0.3" width="200" height="200" style="width: 200px; height: 200px; object-fit: cover; margin: 0 auto 1.5rem; border-radius: 50%;">
+      <span class="featured-tag">FEATURED</span>
+      <h3 class="cocktail-name">GOLDEN MANHATTAN</h3>
+      <p class="cocktail-description">A luxurious twist on the classic Manhattan featuring premium bourbon, sweet vermouth, and gold-infused bitters.</p>
+    </div>
+    
+    <div class="cocktail-card">
+      <img alt="Lavender Fizz cocktail in a tall glass with lavender garnish and bubbles, soft purple hues" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?ixlib=rb-4.0.3" width="200" height="200" style="width: 200px; height: 200px; object-fit: cover; margin: 0 auto 1.5rem; border-radius: 50%;">
+      <span class="featured-tag">FEATURED</span>
+      <h3 class="cocktail-name">LAVENDER FIZZ</h3>
+      <p class="cocktail-description">A refreshing blend of gin, fresh lavender syrup, lemon juice, and prosecco, garnished with dried lavender.</p>
+    </div>
+    
+    <div class="cocktail-card">
+      <img alt="Smoke &amp; Mirrors cocktail with dramatic smoke effect, dark moody lighting" src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3" width="200" height="200" style="width: 200px; height: 200px; object-fit: cover; margin: 0 auto 1.5rem; border-radius: 50%;">
+      <span class="featured-tag">FEATURED</span>
+      <h3 class="cocktail-name">SMOKE &amp; MIRRORS</h3>
+      <p class="cocktail-description">A sophisticated mixture of mezcal, chocolate bitters, and cherry liqueur, served with a smoking rosemary sprig.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section about-section">
+  <div class="about-content">
+    <div class="about-text">
+      <h2>CRAFTING MEMORIES</h2>
+      <p>Happy Drinks brings the art of mixology to your special events. With our team of experienced bartenders and our fully equipped mobile bar, we transform ordinary gatherings into extraordinary experiences.</p>
+      <p>Founded on the principles of exceptional service and creative cocktail crafting, we've been delighting clients across the region with our bespoke beverage solutions. Our commitment to quality ingredients, professional service, and innovative drink menus sets us apart.</p>
+      <p>Whether you're planning an intimate celebration or a grand corporate event, our team ensures that every drink we serve becomes a memorable part of your story.</p>
+    </div>
+    <div class="about-image">
+      <img alt="Bartender crafting a cocktail with golden lighting, professional photography" src="https://images.unsplash.com/photo-1516997121675-4c2d1684aa3e?ixlib=rb-4.0.3" width="500" height="500">
+    </div>
+  </div>
+</section>
+
+<section class="video-section">
+  <div class="video-container">
+    <h2 class="video-title">THE ART OF MIXOLOGY</h2>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/c6GV_vRlIIA" title="10 Easy Cocktails To Make At Home" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section booking-section">
+  
+    <div class="booking-container">
+      <h2 class="booking-title">BOOK YOUR EVENT</h2>
+
+      <div class="booking-tabs">
+        <button type="button" class="tab-button active" data-tab="email">EMAIL</button>
+        <button type="button" class="tab-button" data-tab="whatsapp">WHATSAPP</button>
+      </div>
+
+      <div id="emailTab" class="tab-content active">
+        <form class="booking-form" action="https://formspree.io/f/your-form-id" method="POST">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required="">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required="">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required="">
+          </div>
+
+          <div class="form-group">
+            <label for="event-type">Event Type</label>
+            <select id="event-type" name="event-type" required="">
+              <option value="">Select event type</option>
+              <option value="private-party">Private Party</option>
+              <option value="wedding">Wedding</option>
+              <option value="corporate">Corporate Event</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="date">Event Date</label>
+            <input type="date" id="date" name="date" required="">
+          </div>
+          
+          <div class="form-group">
+            <label for="guests">Number of Guests</label>
+            <input type="number" id="guests" name="guests" min="1" required="">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Additional Details</label>
+            <textarea id="message" name="message"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">SUBMIT REQUEST</button>
+        </form>
+      </div>
+
+      <div id="whatsappTab" class="tab-content">
+        <form class="booking-form" action="https://wa.me/your-number" id="whatsappForm">
+          <div class="form-group">
+            <label for="wa-name">Full Name</label>
+            <input type="text" id="wa-name" name="wa-name" required="">
+          </div>
+          
+          <div class="form-group">
+            <label for="wa-phone">WhatsApp Number</label>
+            <input type="tel" id="wa-phone" name="wa-phone" placeholder="Include country code (e.g., +1)" required="">
+          </div>
+          
+          <div class="form-group">
+            <label for="wa-event-type">Event Type</label>
+            <select id="wa-event-type" name="wa-event-type" required="">
+              <option value="">Select event type</option>
+              <option value="private-party">Private Party</option>
+              <option value="wedding">Wedding</option>
+              <option value="corporate">Corporate Event</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="wa-date">Event Date</label>
+            <input type="date" id="wa-date" name="wa-date" required="">
+          </div>
+          
+          <div class="form-group">
+            <label for="wa-guests">Number of Guests</label>
+            <input type="number" id="wa-guests" name="wa-guests" min="1" required="">
+          </div>
+          
+          <div class="form-group">
+            <label for="wa-message">Additional Details</label>
+            <textarea id="wa-message" name="wa-message"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">CONTACT VIA WHATSAPP</button>
+        </form>
+      </div>
+    </div>
+
+</section>
+
+<section class="map-section">
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.67890!2d-73.935242!3d40.730610!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM40zMDA2JzEwLjIiTiA3M8KwNTYnMDYuOSJX!5e0!3m2!1sen!2sus!4v1234567890" 
+      width="100%" 
+      height="450" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-cross-origin">
+    </iframe>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>HAPPY DRINKS</h3>
+      <p style="opacity: 0.8; line-height: 1.6; margin-bottom: 1rem;">
+        Premium mobile bartending services for your special events.
+      </p>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+    
+    <div class="footer-section">
+      <h3>QUICK LINKS</h3>
+      <ul class="footer-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>SERVICES</h3>
+      <ul class="footer-links">
+        <li><a href="#services">Private Parties</a></li>
+        <li><a href="#services">Weddings</a></li>
+        <li><a href="#services">Corporate Events</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>CONTACT</h3>
+      <ul class="footer-links">
+        <li><a href="mailto:info@happydrinks.com">info@happydrinks.com</a></li>
+        <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<button class="theme-toggle" aria-label="Toggle dark mode">
+  <i class="fas fa-moon"></i>
+</button>
+
+<script>
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+// Add this JavaScript for the parallax effect
+window.addEventListener('scroll', () => {
+  const parallaxBackground = document.querySelector('.hero-background');
+  const scrolled = window.pageYOffset;
+  parallaxBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+
+      button.classList.add('active');
+      document.getElementById(tabId + 'Tab').classList.add('active');
+    });
+  });
+
+  document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('wa-name').value;
+    const phone = document.getElementById('wa-phone').value;
+    const eventType = document.getElementById('wa-event-type').value;
+    const date = document.getElementById('wa-date').value;
+    const guests = document.getElementById('wa-guests').value;
+    const message = document.getElementById('wa-message').value;
+    
+    const whatsappMessage = `Hello! I would like to book an event:%0A%0A` +
+      `Name: ${name}%0A` +
+      `Event Type: ${eventType}%0A` +
+      `Date: ${date}%0A` +
+      `Guests: ${guests}%0A` +
+      `Message: ${message}`;
+    
+    window.open(`https://wa.me/your-number?text=${whatsappMessage}`, '_blank');
+  });
+  
+  const themeToggle = document.querySelector('.theme-toggle');
+  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+
+  if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const icon = themeToggle.querySelector('i');
+    let theme = 'light';
+
+    if (!document.documentElement.hasAttribute('data-theme')) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      icon.classList.replace('fa-moon', 'fa-sun');
+      theme = 'dark';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      icon.classList.replace('fa-sun', 'fa-moon');
+    }
+
+    localStorage.setItem('theme', theme);
+  });
+});
+</script>
+
+
+</body></html>
